@@ -38,12 +38,12 @@ function main() {
 	renderer.setSize(window.innerWidth, window.innerHeight);
 
 
-	// var textureCube = new THREE.CubeTextureLoader()
-	//     .setPath('./texture/Nalovardo/')
-	//     .load(['posx.jpg', 'negx.jpg', 'posy.jpg', 'negy.jpg', 'posz.jpg', 'negz.jpg']);
-	//
-	// scene = new THREE.Scene();
-	// scene.background = textureCube;
+	var textureCube = new THREE.CubeTextureLoader()
+	    .setPath('./texture/Nalovardo/')
+	    .load(['posx.jpg', 'negx.jpg', 'posy.jpg', 'negy.jpg', 'posz.jpg', 'negz.jpg']);
+
+	scene = new THREE.Scene();
+	scene.background = textureCube;
 
 	//Import the map
 	map(scene);
@@ -62,7 +62,7 @@ function main() {
 	veyron.callback = function (object) {
 		addCar(object, -300, -215, -2000, 0);
 	};
-	veyron.loadPartsBinary("obj/veyron/parts/veyron_body_bin.js", "obj/veyron/parts/veyron_wheel_bin.js");
+	veyron.loadPartsBinary("obj/veyron/parts/veyron_body_binary.js", "obj/veyron/parts/veyron_wheel_binary.js");
 	config["veyron"].model = veyron;
 	currentCamera = veyron;
 	veyron.MAX_SPEED = 3800;
@@ -107,6 +107,8 @@ function main() {
 	//RENDER FUNCTION
 	function render() {
 		// stats.update();
+		console.log(veyron.root.position.x);
+		console.log(veyron.root.position.z);
 		var delta = clock.getDelta();
 		requestAnimationFrame(render);
 		renderer.render(scene, camera);

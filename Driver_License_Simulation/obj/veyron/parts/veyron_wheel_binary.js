@@ -34,6 +34,6 @@
 	"specularCoef" : 15.686275
 	}],
 
-    "buffers": "veyron_wheel_bin.bin"
+    "buffers": "veyron_wheel_binary.bin"
 
 }
