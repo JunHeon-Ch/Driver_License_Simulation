@@ -426,37 +426,61 @@ function trafficLight(x, y, z, angle, scene) {
     var streetTrafficLight = new THREE.Object3D();
 
     var redTrafficLightMaterial = new THREE.MeshLambertMaterial({color: 0xff0000, ambient: 0xff0000});
-    var greenTrafficLightMaterial = new THREE.MeshLambertMaterial({color: 0xff0000, ambient: 0x80E12A});
-    var yellowTrafficLightMaterial = new THREE.MeshLambertMaterial({color: 0xff0000, ambient: 0xFFA500});
-    var redTrafficLight = new THREE.Mesh(new THREE.SphereGeometry(10, 32, 32, 0, Math.PI), redTrafficLightMaterial);
-    var greenTrafficLight = new THREE.Mesh(new THREE.SphereGeometry(10, 32, 32, 0, Math.PI), greenTrafficLightMaterial);
-    var yellowTrafficLight = new THREE.Mesh(new THREE.SphereGeometry(10, 32, 32, 0, Math.PI), yellowTrafficLightMaterial);
-    redTrafficLight.rotation.x = Math.PI / 2;
-    greenTrafficLight.rotation.x = Math.PI / 2;
-    yellowTrafficLight.rotation.x = Math.PI / 2;
+    var greenTrafficLightMaterial = new THREE.MeshLambertMaterial({color: 0x00ff00, ambient: 0x80E12A});
+    var yellowTrafficLightMaterial = new THREE.MeshLambertMaterial({color: 0xffff00, ambient: 0xFFA500});
+    var redTrafficLight = new THREE.Mesh(new THREE.SphereGeometry(30, 32, 32, 0, Math.PI), redTrafficLightMaterial);
+    var greenTrafficLight = new THREE.Mesh(new THREE.SphereGeometry(30, 32, 32, 0, Math.PI), greenTrafficLightMaterial);
+    var yellowTrafficLight = new THREE.Mesh(new THREE.SphereGeometry(30, 32, 32, 0, Math.PI), yellowTrafficLightMaterial);
+    // redTrafficLight.rotation.x = Math.PI / 2;
+    // greenTrafficLight.rotation.x = Math.PI / 2;
+    // yellowTrafficLight.rotation.x = Math.PI / 2;
     streetTrafficLight.add(redTrafficLight);
     streetTrafficLight.add(greenTrafficLight);
     streetTrafficLight.add(yellowTrafficLight);
+    redTrafficLight.position.x = 1000;
+    redTrafficLight.position.y = 30;
+    redTrafficLight.position.z = 0;
+    greenTrafficLight.position.x = 1200;
+    greenTrafficLight.position.y = 30;
+    greenTrafficLight.position.z = 0;
+    yellowTrafficLight.position.x = 1100;
+    yellowTrafficLight.position.y = 30;
+    yellowTrafficLight.position.z = 0;
 
     var textureMetal = new THREE.TextureLoader().load('texture/black-metal.jpg');
     textureMetal.minFilter = THREE.MipMapLinearFilter;
     textureMetal.magFilter = THREE.NearestFilter;
 
-    var pole = new THREE.Mesh(new THREE.CylinderGeometry(10, 10, 450, 32), new THREE.MeshLambertMaterial({
-        color: 0xffffff,
-        map: textureMetal
-    }));
-    greenTrafficLight.add(pole);
-    pole.rotation.x = Math.PI / 2;
-    pole.position.y = 100;
-    pole.position.z = 305;
+    // var pole = new THREE.Mesh(new THREE.CylinderGeometry(10, 10, 650, 32), new THREE.MeshLambertMaterial({
+    //     color: 0xffffff,
+    //     map: textureMetal
+    // }));
+    // greenTrafficLight.add(pole);
+    // // pole.rotation.x = Math.PI / 2;
+    // pole.position.x = -1000;
+    // pole.position.y = -350;
+    // // pole.position.z = 0;
+    //
+    // // 가로 기둥
+    // var pole2 = new THREE.Mesh(new THREE.CylinderGeometry(10, 10, 650, 32), new THREE.MeshLambertMaterial({
+    //     color: 0xffffff,
+    //     map: textureMetal
+    // }));
+    // greenTrafficLight.add(pole2);
+    // pole2.rotation.y = Math.PI / 2;
+    // pole2.rotation.x = Math.PI / 2;
+    // // pole.position.x = -1000;
+    // pole2.position.y = -350;
+    // // pole.position.z = 0;
 
-    var bracket = new THREE.Mesh(new THREE.BoxGeometry(50, 20, 150), new THREE.MeshLambertMaterial({
+    var bracket = new THREE.Mesh(new THREE.BoxGeometry(50, 50, 300), new THREE.MeshLambertMaterial({
         color: 0xffffff,
         map: textureMetal
     }));
     greenTrafficLight.add(bracket);
-    bracket.rotation.x = Math.PI / 2;
+    // bracket.rotation.x = Math.PI / 2;
+    bracket.rotation.y = Math.PI / 2;
+    bracket.position.x = -100;
     bracket.position.y = 30;
     bracket.position.z = -5;
 

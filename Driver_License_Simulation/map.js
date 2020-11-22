@@ -134,7 +134,7 @@ function map(scene) {
     scene.add(street);
 
     // TRAFFIC LIGHT
-    trafficLight(0, -175, 1000, Math.PI / 2, scene);
+    trafficLight(-1000, -175, 1000, Math.PI / 2, scene);
 
     //SIDEWALK STREET
     var sidewalk;
