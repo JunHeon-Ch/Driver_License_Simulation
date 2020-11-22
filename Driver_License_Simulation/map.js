@@ -89,17 +89,17 @@ function map(scene) {
     // square.position.y = -215;
     // scene.add(square);
     //
-    square = new THREE.Mesh(new THREE.PlaneGeometry(16000 * PERCENT, 17600*PERCENT), grassMaterial);
+    square = new THREE.Mesh(new THREE.PlaneGeometry(16000 * PERCENT, 17600 * PERCENT), grassMaterial);
     square.rotation.x = -Math.PI / 2;
     square.position.x = -9500 * PERCENT;
-    square.position.z = -10100*PERCENT;
+    square.position.z = -10100 * PERCENT;
     square.position.y = -215;
     scene.add(square);
 
-    square = new THREE.Mesh(new THREE.PlaneGeometry(16000 * PERCENT, 17600*PERCENT), grassMaterial);
+    square = new THREE.Mesh(new THREE.PlaneGeometry(16000 * PERCENT, 17600 * PERCENT), grassMaterial);
     square.rotation.x = -Math.PI / 2;
     square.position.x = 9500 * PERCENT;
-    square.position.z = -10100*PERCENT;
+    square.position.z = -10100 * PERCENT;
     square.position.y = -215;
     scene.add(square);
 
@@ -107,11 +107,11 @@ function map(scene) {
     var street;
     for (i = 0; i < 3; i++) {
         // 가운데 세로로된 길
-        street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 12425), roadMaterial);
+        street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 5500), roadMaterial);
         street.rotation.x = -Math.PI / 2;
         street.position.x = (-19000 + i * 19000) * PERCENT;
         street.position.y = -215;
-        street.position.z = -9500;
+        street.position.z = -6000;
         scene.add(street);
     }
 
@@ -138,25 +138,25 @@ function map(scene) {
     for (i = 0; i < 2; i++) {
         // 가운데(왼쪽)랑 오른쪽(왼쪽) 긴부분
         if (i === 1) {  // 가운데는 안움직이게 하기
-            sidewalk = new THREE.Mesh(new THREE.BoxGeometry(350, 17600, 40), sidewalkMaterial);
+            sidewalk = new THREE.Mesh(new THREE.BoxGeometry(350, 10000, 40), sidewalkMaterial);
             sidewalk.rotation.x = -Math.PI / 2;
             sidewalk.position.x = -18125 + i * 19000;
             sidewalk.position.y = -195;
-            sidewalk.position.z = -9500;
+            sidewalk.position.z = -6000;
             scene.add(sidewalk);
 
-            for (j = 0; j < 9; j++) {
+            for (j = 0; j < 5; j++) {
                 lamp(-18125 + i * 19000, -175, -1200 - j * 2000, Math.PI / 2, scene);
             }
         } else {    // 오른쪽
-            sidewalk = new THREE.Mesh(new THREE.BoxGeometry(350, 17600, 40), sidewalkMaterial);
+            sidewalk = new THREE.Mesh(new THREE.BoxGeometry(350, 10000, 40), sidewalkMaterial);
             sidewalk.rotation.x = -Math.PI / 2;
             sidewalk.position.x = (-18125 + i * 19000) * PERCENT + 350;
             sidewalk.position.y = -195;
-            sidewalk.position.z = -9500;
+            sidewalk.position.z = -6000;
             scene.add(sidewalk);
 
-            for (j = 0; j < 9; j++) {
+            for (j = 0; j < 5; j++) {
                 lamp((-18125 + i * 19000) * PERCENT + 350, -175, -1200 - j * 2000, Math.PI / 2, scene);
             }
         }
@@ -183,38 +183,39 @@ function map(scene) {
             scene.add(sidewalk);
 
             for (j = 0; j < 4; j++) {   // 가로등 개수 반으로 줄이기
-                lamp((-18125 + i * 19000) * PERCENT+350, -175, 1200 + j * 2000, Math.PI / 2, scene);
+                lamp((-18125 + i * 19000) * PERCENT + 350, -175, 1200 + j * 2000, Math.PI / 2, scene);
             }
         }
     }
     for (i = 1; i < 3; i++) {
         // 가운데(오른쪽)랑 오른쪽(오른쪽) 긴부분
         if (i === 1) {  // 가운데는 안움직이게 하기
-            sidewalk = new THREE.Mesh(new THREE.BoxGeometry(350, 17600, 40), sidewalkMaterial);
+            sidewalk = new THREE.Mesh(new THREE.BoxGeometry(350, 10000, 40), sidewalkMaterial);
             sidewalk.rotation.x = -Math.PI / 2;
             sidewalk.position.x = -19875 + i * 19000;
             sidewalk.position.y = -195;
-            sidewalk.position.z = -9500;
+            sidewalk.position.z = -6000;
             scene.add(sidewalk);
 
-            for (j = 0; j < 9; j++) {
+            for (j = 0; j < 5; j++) {
                 lamp(-19875 + i * 19000, -175, -1200 - j * 2000, -Math.PI / 2, scene);
             }
         } else {
-            sidewalk = new THREE.Mesh(new THREE.BoxGeometry(350, 17600, 40), sidewalkMaterial);
+            sidewalk = new THREE.Mesh(new THREE.BoxGeometry(350, 10000, 40), sidewalkMaterial);
             sidewalk.rotation.x = -Math.PI / 2;
             sidewalk.position.x = (-19875 + i * 19000) * PERCENT - 350;
             sidewalk.position.y = -195;
-            sidewalk.position.z = -9500;
+            sidewalk.position.z = -6000;
             scene.add(sidewalk);
 
-            for (j = 0; j < 9; j++) {
-                lamp((-19875 + i * 19000)*PERCENT-350, -175, -1200 - j * 2000, -Math.PI / 2, scene);
+            for (j = 0; j < 5; j++) {
+                lamp((-19875 + i * 19000) * PERCENT - 350, -175, -1200 - j * 2000, -Math.PI / 2, scene);
             }
         }
     }
+
+    // 가운데 윗부분(왼쪽)이랑 오른쪽 윗부분(왼쪽)
     for (i = 1; i < 3; i++) {
-        // 가운데 윗부분(왼쪽)이랑 오른쪽 윗부분(왼쪽)
         if (i === 1) {
             sidewalk = new THREE.Mesh(new THREE.BoxGeometry(350, 8500, 40), sidewalkMaterial);
             sidewalk.rotation.x = -Math.PI / 2;
@@ -235,89 +236,140 @@ function map(scene) {
             scene.add(sidewalk);
 
             for (j = 0; j < 4; j++) {   // 가로등 개수 반으로 줄이기
-                lamp((-19875 + i * 19000)*PERCENT-350, -175, 1200 + j * 2000, -Math.PI / 2, scene);
+                lamp((-19875 + i * 19000) * PERCENT - 350, -175, 1200 + j * 2000, -Math.PI / 2, scene);
             }
         }
     }
 
     //AVENUE
+    // 왼쪽 가운데,아래 가로로된 길
     for (i = 0; i < 3; i++) {
-        // 왼쪽 가운데,아래 가로로된 길
-        street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 12425 * PERCENT), roadMaterial);
-        street.rotation.x = -Math.PI / 2;
-        street.rotation.z = -Math.PI / 2;
-        street.position.x = 9500 * PERCENT;
-        street.position.z = -19000 + i * 19000;
-        street.position.y = -215;
-        scene.add(street);
+        if (i === 0) {  // 아래
+            street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 9500 * PERCENT), roadMaterial);
+            street.rotation.x = -Math.PI / 2;
+            street.rotation.z = -Math.PI / 2;
+            street.position.x = 10100 * PERCENT;
+            street.position.z = -12000 + i * 12000;
+            street.position.y = -215;
+            scene.add(street);
+        } else if (i === 1) {    // 가운데
+            street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 9500 * PERCENT), roadMaterial);
+            street.rotation.x = -Math.PI / 2;
+            street.rotation.z = -Math.PI / 2;
+            street.position.x = 10100 * PERCENT;
+            street.position.z = -19000 + i * 19000;
+            street.position.y = -215;
+            scene.add(street);
+        } else {
+            // 왼쪽 반정도에 길 그리기
+            street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 9500 * PERCENT), roadMaterial);
+            street.rotation.x = -Math.PI / 2;
+            street.rotation.z = -Math.PI / 2;
+            street.position.x = 10100 * PERCENT;
+            street.position.z = -10000 + i * 10000;
+            street.position.y = -215;
+            scene.add(street);
+        }
     }
-    // 왼쪽 반정도에 길 그리기
-    street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 12425 * PERCENT), roadMaterial);
-    street.rotation.x = -Math.PI / 2;
-    street.rotation.z = -Math.PI / 2;
-    street.position.x = 9500 * PERCENT;
-    street.position.z = -10000 + i * 10000;
-    street.position.y = -215;
-    scene.add(street);
 
-    for (i = 0; i < 2; i++) {
-        // 오른쪽 가운데,아래 가로로된 길
-        street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 12425 * PERCENT), roadMaterial);
-        street.rotation.x = -Math.PI / 2;
-        street.rotation.z = -Math.PI / 2;
-        street.position.x = -9500 * PERCENT;
-        street.position.z = -19000 + i * 19000;
-        street.position.y = -215;
-        scene.add(street);
+    // 오른쪽 가운데,아래 가로로된 길
+    for (i = 0; i < 3; i++) {
+        if (i === 0) {  // 아래
+            street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 9500 * PERCENT), roadMaterial);
+            street.rotation.x = -Math.PI / 2;
+            street.rotation.z = -Math.PI / 2;
+            street.position.x = -10100 * PERCENT;
+            street.position.z = -12000 + i * 12000;
+            street.position.y = -215;
+            scene.add(street);
+        } else if (i === 1) {    // 가운데
+            street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 9500 * PERCENT), roadMaterial);
+            street.rotation.x = -Math.PI / 2;
+            street.rotation.z = -Math.PI / 2;
+            street.position.x = -10100 * PERCENT;
+            street.position.z = -19000 + i * 19000;
+            street.position.y = -215;
+            scene.add(street);
+        } else {
+            // 오른쪽 반정도에 길 그리기
+            street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 9500 * PERCENT), roadMaterial);
+            street.rotation.x = -Math.PI / 2;
+            street.rotation.z = -Math.PI / 2;
+            street.position.x = -10100 * PERCENT;
+            street.position.z = -10000 + i * 10000;
+            street.position.y = -215;
+            scene.add(street);
+        }
     }
-    // 오른쪽 반정도에 길 그리기
-    street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 12425 * PERCENT), roadMaterial);
-    street.rotation.x = -Math.PI / 2;
-    street.rotation.z = -Math.PI / 2;
-    street.position.x = -9500 * PERCENT;
-    street.position.z = -10000 + i * 10000;
-    street.position.y = -215;
-    scene.add(street);
+
 
     //SIDEWALK AVENUE
     for (i = 0; i < 2; i++) {
         // 오른쪽 아래(위쪽)과 가운데(위쪽)
-        sidewalk = new THREE.Mesh(new THREE.BoxGeometry(350, 10000, 40), sidewalkMaterial);
-        sidewalk.rotation.x = -Math.PI / 2;
-        sidewalk.rotation.z = -Math.PI / 2;
-        sidewalk.position.z = -18125 + i * 19000;
-        sidewalk.position.y = -195;
-        sidewalk.position.x = -9500 * PERCENT;
-        scene.add(sidewalk);
+        if (i === 0) {  // 아래
+            sidewalk = new THREE.Mesh(new THREE.BoxGeometry(350, 10000, 40), sidewalkMaterial);
+            sidewalk.rotation.x = -Math.PI / 2;
+            sidewalk.rotation.z = -Math.PI / 2;
+            sidewalk.position.z = -11200 + i * 19000;
+            sidewalk.position.y = -195;
+            sidewalk.position.x = -9500 * PERCENT;
+            scene.add(sidewalk);
 
-        for (j = 0; j < 5; j++) {
-            lamp(-1200 - j * 2000, -175, -18125 + i * 19000, 0, scene);
+            for (j = 0; j < 5; j++) {
+                lamp(-1200 - j * 2000, -175, -11200, 0, scene);
+            }
+        } else {    // 가운데
+            sidewalk = new THREE.Mesh(new THREE.BoxGeometry(350, 10000, 40), sidewalkMaterial);
+            sidewalk.rotation.x = -Math.PI / 2;
+            sidewalk.rotation.z = -Math.PI / 2;
+            sidewalk.position.z = -18125 + i * 19000;
+            sidewalk.position.y = -195;
+            sidewalk.position.x = -9500 * PERCENT;
+            scene.add(sidewalk);
+
+            for (j = 0; j < 5; j++) {
+                lamp(-1200 - j * 2000, -175, -18125 + i * 19000, 0, scene);
+            }
         }
     }
     for (i = 0; i < 2; i++) {
-        // 오른쪽 아래(위쪽)과 가운데(위쪽)
-        sidewalk = new THREE.Mesh(new THREE.BoxGeometry(350, 10000, 40), sidewalkMaterial);
-        sidewalk.rotation.x = -Math.PI / 2;
-        sidewalk.rotation.z = -Math.PI / 2;
-        sidewalk.position.z = -18125 + i * 19000;
-        sidewalk.position.y = -195;
-        sidewalk.position.x = 9500 * PERCENT;
-        scene.add(sidewalk);
+        // 왼쪽 아래(위쪽)과 가운데(위쪽)
+        if(i===0){  // 아래
+            sidewalk = new THREE.Mesh(new THREE.BoxGeometry(350, 10000, 40), sidewalkMaterial);
+            sidewalk.rotation.x = -Math.PI / 2;
+            sidewalk.rotation.z = -Math.PI / 2;
+            sidewalk.position.z = -11200 + i * 19000;
+            sidewalk.position.y = -195;
+            sidewalk.position.x = 9500 * PERCENT;
+            scene.add(sidewalk);
 
-        for (j = 0; j < 5; j++) {
-            lamp(1200 + j * 2000, -175, -18125 + i * 19000, 0, scene);
+            for (j = 0; j < 5; j++) {
+                lamp(1200 + j * 2000, -175, -11200, 0, scene);
+            }
+        }else{  // 가운데
+            sidewalk = new THREE.Mesh(new THREE.BoxGeometry(350, 10000, 40), sidewalkMaterial);
+            sidewalk.rotation.x = -Math.PI / 2;
+            sidewalk.rotation.z = -Math.PI / 2;
+            sidewalk.position.z = -18125 + i * 19000;
+            sidewalk.position.y = -195;
+            sidewalk.position.x = 9500 * PERCENT;
+            scene.add(sidewalk);
+
+            for (j = 0; j < 5; j++) {
+                lamp(1200 + j * 2000, -175, -18125 + i * 19000, 0, scene);
+            }
         }
     }
     for (i = 1; i < 3; i++) {
         // 오른쪽 가운데(아랫쪽)랑 반쪼가리 윗부분(아랫쪽)
         if (i === 1) {
             // T자 주차해야하니까 반으로 잘라서 두번 그려주기
-            sidewalk = new THREE.Mesh(new THREE.BoxGeometry(350, 4500, 40), sidewalkMaterial);
+            sidewalk = new THREE.Mesh(new THREE.BoxGeometry(350, 4560, 40), sidewalkMaterial);
             sidewalk.rotation.x = -Math.PI / 2;
             sidewalk.rotation.z = -Math.PI / 2;
             sidewalk.position.z = -19875 + i * 19000;
             sidewalk.position.y = -195;
-            sidewalk.position.x = -5000 * PERCENT;
+            sidewalk.position.x = -4960 * PERCENT;
             scene.add(sidewalk);
 
             sidewalk = new THREE.Mesh(new THREE.BoxGeometry(350, 4500, 40), sidewalkMaterial);
@@ -378,8 +430,8 @@ function map(scene) {
         }
     }
 
-    // 반쪼가리의 회전하는 부분
     // ANGLE 1
+    // 왼쪽 윗부분 교차로
     street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 6000), continueLineMaterial);
     street.rotation.x = -Math.PI / 2;
     street.position.x = 19000 * PERCENT;
@@ -387,10 +439,10 @@ function map(scene) {
     street.position.y = -215;
     scene.add(street);
 
-    street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 2600), continueLineMaterial);
+    street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 2200), continueLineMaterial);
     street.rotation.x = -Math.PI / 2;
     street.rotation.z = -Math.PI / 2;
-    street.position.x = 17000 * PERCENT;
+    street.position.x = 16000 * PERCENT;
     street.position.z = 10000;
     street.position.y = -215;
     scene.add(street);
@@ -435,7 +487,7 @@ function map(scene) {
     street.position.y = -215;
     scene.add(street);
 
-    // 반쪼가리의 회전하는 부분
+    // 오른쪽 윗부분 교차로
     //ANGLE 2
     street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 6000), continueLineMaterial);
     street.rotation.x = -Math.PI / 2;
@@ -444,10 +496,10 @@ function map(scene) {
     street.position.y = -215;
     scene.add(street);
 
-    street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 2600), continueLineMaterial);
+    street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 2200), continueLineMaterial);
     street.rotation.x = -Math.PI / 2;
     street.rotation.z = -Math.PI / 2;
-    street.position.x = -17000 * PERCENT;
+    street.position.x = -16000 * PERCENT;
     street.position.z = 10000;
     street.position.y = -215;
     scene.add(street);
@@ -483,11 +535,11 @@ function map(scene) {
     street.position.z = -2000;
     scene.add(street);
 
-    street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 2600), stopMaterial);
+    street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 1900), stopMaterial);
     street.rotation.x = -Math.PI / 2;
     street.rotation.z = Math.PI / 2;
     street.position.y = -215;
-    street.position.x = -17000 * PERCENT;
+    street.position.x = -16300 * PERCENT;
     scene.add(street);
 
     //CROSS C
@@ -545,11 +597,11 @@ function map(scene) {
     street.position.z = -2000;
     scene.add(street);
 
-    street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 2600), stopMaterial);
+    street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 1900), stopMaterial);
     street.rotation.x = -Math.PI / 2;
     street.rotation.z = -Math.PI / 2;
     street.position.y = -215;
-    street.position.x = 17000 * PERCENT;
+    street.position.x = 16300 * PERCENT;
     scene.add(street);
 
     //ANGLE 4
@@ -557,22 +609,22 @@ function map(scene) {
     street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 2600), continueLineMaterial);
     street.rotation.x = -Math.PI / 2;
     street.position.x = 19000 * PERCENT;
-    street.position.z = -17000;
+    street.position.z = -10000;
     street.position.y = -215;
     scene.add(street);
 
-    street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 2600), continueLineMaterial);
+    street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 2200), continueLineMaterial);
     street.rotation.x = -Math.PI / 2;
     street.rotation.z = -Math.PI / 2;
-    street.position.x = 17000 * PERCENT;
-    street.position.z = -19000;
+    street.position.x = 16000 * PERCENT;
+    street.position.z = -12000;
     street.position.y = -215;
     scene.add(street);
 
     street = new THREE.Mesh(new THREE.RingGeometry(0.1, 1400, 30, 30, 0, Math.PI / 2), crossNoLineMaterial);
     street.rotation.x = -Math.PI / 2;
     street.position.x = 17800 * PERCENT;
-    street.position.z = -18300;
+    street.position.z = -11300;
     street.position.y = -215;
     scene.add(street);
 
@@ -580,7 +632,7 @@ function map(scene) {
     // 가운데 아래 교차로
     street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 2600), stopMaterial);
     street.rotation.x = -Math.PI / 2;
-    street.position.z = -17000;
+    street.position.z = -10000;
     street.position.y = -215;
     scene.add(street);
 
@@ -588,14 +640,14 @@ function map(scene) {
     street.rotation.x = -Math.PI / 2;
     street.rotation.z = -Math.PI / 2;
     street.position.x = -2000;
-    street.position.z = -19000;
+    street.position.z = -12000;
     street.position.y = -215;
     scene.add(street);
 
     street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 1400), oneLineMaterial);
     street.rotation.x = -Math.PI / 2;
     street.rotation.z = Math.PI / 2;
-    street.position.z = -19000;
+    street.position.z = -12000;
     street.position.y = -215;
     scene.add(street);
 
@@ -603,7 +655,7 @@ function map(scene) {
     street.rotation.x = -Math.PI / 2;
     street.rotation.z = -Math.PI / 2;
     street.position.x = 2000;
-    street.position.z = -19000;
+    street.position.z = -12000;
     street.position.y = -215;
     scene.add(street);
 
@@ -612,15 +664,15 @@ function map(scene) {
     street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 2600), continueLineMaterial);
     street.rotation.x = -Math.PI / 2;
     street.position.x = -19000 * PERCENT;
-    street.position.z = -17000;
+    street.position.z = -10000;
     street.position.y = -215;
     scene.add(street);
 
-    street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 2600), continueLineMaterial);
+    street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 2200), continueLineMaterial);
     street.rotation.x = -Math.PI / 2;
     street.rotation.z = -Math.PI / 2;
-    street.position.x = -17000 * PERCENT;
-    street.position.z = -19000;
+    street.position.x = -16000 * PERCENT;
+    street.position.z = -12000;
     street.position.y = -215;
     scene.add(street);
 
@@ -628,7 +680,7 @@ function map(scene) {
     street.rotation.x = -Math.PI / 2;
     street.rotation.z = Math.PI / 2;
     street.position.x = -17800 * PERCENT;
-    street.position.z = -18300;
+    street.position.z = -11300;
     street.position.y = -215;
     scene.add(street);
 
@@ -657,7 +709,7 @@ function map(scene) {
     //down
     var green = new THREE.Mesh(new THREE.PlaneBufferGeometry(75400, 18000), grassMaterial);
     green.rotation.x = -Math.PI / 2;
-    green.position.z = -28700;
+    green.position.z = -21700;
     green.position.y = -215;
     scene.add(green);
 
@@ -688,7 +740,7 @@ function map(scene) {
     green = new THREE.Mesh(new THREE.PlaneBufferGeometry(1400, 1400), grassMaterial);
     green.rotation.x = -Math.PI / 2;
     green.position.x = -19000 * PERCENT;
-    green.position.z = -19000;
+    green.position.z = -12000;
     green.position.y = -216;
     scene.add(green);
 
@@ -696,7 +748,7 @@ function map(scene) {
     green = new THREE.Mesh(new THREE.PlaneBufferGeometry(1400, 1400), grassMaterial);
     green.rotation.x = -Math.PI / 2;
     green.position.x = 19000 * PERCENT;
-    green.position.z = -19000;
+    green.position.z = -12000;
     green.position.y = -216;
     scene.add(green);
 
