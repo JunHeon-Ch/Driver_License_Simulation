@@ -28,13 +28,6 @@
             width: 100%;
             text-align: center;
         }
-        #emergency_background {
-            background-color: transparent;
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            text-align: center;
-        }
 
         #startBtn {
             padding: 20px 40px;
@@ -133,15 +126,10 @@
 <body onload="main()">
 
 <div id="start_background" style="display: table;">
+    <!--   <p>Loading ...</p>-->
     <div style="display: table-cell; vertical-align: middle;">
         <input type="button" id="startBtn" value="START" onclick="startButton()">
         <p id="countdown"></p>
-    </div>
-</div>
-<div id="emergency_background" style="display: none;">
-    <div style="display: table-cell; vertical-align: middle;">
-<!--        <input type="button" id="stopSuddenBtn" value="START" src="emergency_light" onclick="stopSudden()">-->
-        <img id="stopSuddenBtn" src="warning.png" style="cursor: pointer;" onclick="stopSudden()">
     </div>
 </div>
 
@@ -186,16 +174,8 @@
     var time = 0;
     var timer_f;
 
-    var sudden_time=1000;
-    // var sudden_time;
-    var sudden_f;
-    var sudden_red=true;
-    // var sudden_end=false;
-    // document.getElementById('emergency_background').style.display = "none";
-
     function startButton() {
         document.getElementById('startBtn').style.display = "none";
-        // randomSuddenDanger(); // 돌발이 나타날 랜덤 초 생성
         countdown_f = setInterval(countdown, 1000);
     }
 
@@ -217,11 +197,6 @@
 
     function stopwatch() {
         time++;
-        if(time==sudden_time){
-            document.getElementById('emergency_background').style.display = "table";
-            sudden_f = setInterval(showSuddenDanger, 500);
-        }
-
         var mins = Math.floor(time / 100 / 60);
         var secs = Math.floor(time / 100) % 60;
         var milisec = time % 100;
@@ -236,26 +211,6 @@
             milisec = "0" + milisec;
         }
         document.getElementById('timer').innerText = mins + ":" + secs + ":" + milisec;
-    }
-    function showSuddenDanger() {
-        if(sudden_red){
-            document.getElementById('emergency_background').style.background = "rgba(255, 0, 0, 0.4)";
-        }else{
-            document.getElementById('emergency_background').style.background = "transparent";
-        }
-        sudden_red = !sudden_red;
-        // if(sudden_end){
-        //     // 돌발 처리가 끝나면 'sudden_end'를 true로 변경, true로 변경되면 돌발 종료
-        //     clearInterval(sudden_f);
-        // }
-    }
-    function stopSudden(){
-        clearInterval(sudden_f);
-        document.getElementById('emergency_background').style.display = "none";
-    }
-    function randomSuddenDanger(){
-        sudden_time = Math.floor( Math.random()  * 60 + 120 )*100; //120초(2분)~180초(3분) 사이의 난수 생성
-        console.log("random time : " + sudden_time/100);
     }
 
 </script>
