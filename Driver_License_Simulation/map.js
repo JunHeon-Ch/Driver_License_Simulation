@@ -133,6 +133,9 @@ function map(scene) {
     street.position.z = -4000;
     scene.add(street);
 
+    // TRAFFIC LIGHT
+    trafficLight(0, -175, 1000, Math.PI / 2, scene);
+
     //SIDEWALK STREET
     var sidewalk;
     for (i = 0; i < 2; i++) {
