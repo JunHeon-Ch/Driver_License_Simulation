@@ -2,6 +2,14 @@
 <html>
 <head>
     <title>Driver License Simulation</title>
+    <style type="text/css">
+        @font-face {
+            font-family: mainFont;
+            src: url("./font.otf");
+            font-style: normal;
+            font-weight: normal;
+        }
+    </style>
     <script type="text/javascript" src="./build/three.js"></script>
     <script type="text/javascript" src="./build/dat.gui.js"></script>
     <script type="text/javascript" src="js/controls/OrbitControls.js"></script>
@@ -19,6 +27,7 @@
             /* set margin to 0 and overflow to hidden, to go fullscreen */
             margin: 0;
             overflow: hidden;
+            font-family: 'mainFont' ;
         }
 
         #start_background {
@@ -62,6 +71,7 @@
         }
 
         #timer {
+            width: 135px;
             margin: 10px;
             font-size: 30px;
             border-radius: 5px;
