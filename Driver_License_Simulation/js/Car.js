@@ -128,16 +128,17 @@ THREE.Car = function () {
 
 	this.updateCarModel = function (delta, controls) {
 		// speed and wheels based on controls
-
-		if (controls.accelerator) {
-			if (controls.gearDrive) {
-				if (this.speed < this.MAX_SPEED) {
-					this.speed = THREE.Math.clamp(this.speed + delta * this.FRONT_ACCELERATION, this.MAX_REVERSE_SPEED, this.MAX_SPEED);
-					this.acceleration = THREE.Math.clamp(this.acceleration + delta, -1, 1);
+		if (!controls.gearParking) {
+			if (controls.accelerator) {
+				if (controls.gearDrive) {
+					if (this.speed < this.MAX_SPEED) {
+						this.speed = THREE.Math.clamp(this.speed + delta * this.FRONT_ACCELERATION, this.MAX_REVERSE_SPEED, this.MAX_SPEED);
+						this.acceleration = THREE.Math.clamp(this.acceleration + delta, -1, 1);
+					}
+				} else if (controls.gearReverse) {
+					this.speed = THREE.Math.clamp(this.speed - delta * this.BACK_ACCELERATION, this.MAX_REVERSE_SPEED, this.MAX_SPEED);
+					this.acceleration = THREE.Math.clamp(this.acceleration - delta, -1, 1);
 				}
-			} else if (controls.gearReverse) {
-				this.speed = THREE.Math.clamp(this.speed - delta * this.BACK_ACCELERATION, this.MAX_REVERSE_SPEED, this.MAX_SPEED);
-				this.acceleration = THREE.Math.clamp(this.acceleration - delta, -1, 1);
 			}
 		}
 

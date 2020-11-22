@@ -6,7 +6,9 @@ var controlsVeyron = {
     moveLeft: false,
     moveRight: false,
     gearDrive: false,
-    gearReverse: false
+    gearReverse: false,
+    gearParking: true,
+    gearNeutral: false
 };
 
 var veyron, cameraTarget;
@@ -77,20 +79,6 @@ function main() {
     document.getElementById('velocity').innerText = veyron.speed + ' KM';
     render();
 
-    // //STATS FUNCTION
-    // function initStats() {
-    //     var stats = new Stats();
-    //     stats.setMode(0); // 0: fps, 1: ms
-    //     // Align top-left
-    //     stats.domElement.style.position = 'absolute';
-    //     stats.domElement.style.left = '0px';
-    //     stats.domElement.style.top = '0px';
-    //
-    //     document.getElementById("Stats-output").appendChild(stats.domElement);
-    //     return stats;
-    // }
-
-
     function addCar(object, x, y, z, s) {
         object.root.position.set(x, y, z);
         scene.add(object.root);
@@ -151,16 +139,52 @@ function main() {
             case 82: /*R*/
                 controlsVeyron.break = true;
                 break;
-            case 83: /*S, R*/
-                if (controlsVeyron.break) {
-                    controlsVeyron.gearDrive = true;
+            case 65: /*Parking A, R*/
+                if (controlsVeyron.break && Math.abs(Math.round(veyron.speed / veyron.MAX_SPEED * 200)) == 0) {
+                    controlsVeyron.gearDrive = false;
                     controlsVeyron.gearReverse = false;
+                    controlsVeyron.gearParking = true;
+                    controlsVeyron.gearNeutral = false;
+                    document.getElementById('reverse').style.background = "rgba(0, 0, 0, 0.7)";
+                    document.getElementById('drive').style.background = "rgba(0, 0, 0, 0.7)";
+                    document.getElementById('parking').style.background = "rgba(250, 167, 2, 0.8)";
+                    document.getElementById('neutral').style.background = "rgba(0, 0, 0, 0.7)";
                 }
                 break;
-            case 70: /*F, R*/
-                if (controlsVeyron.break) {
+            case 83: /*Reverse S, R*/
+                if (controlsVeyron.break && Math.abs(Math.round(veyron.speed / veyron.MAX_SPEED * 200)) == 0) {
                     controlsVeyron.gearDrive = false;
                     controlsVeyron.gearReverse = true;
+                    controlsVeyron.gearParking = false;
+                    controlsVeyron.gearNeutral = false;
+                    document.getElementById('reverse').style.background = "rgba(250, 167, 2, 0.8)";
+                    document.getElementById('drive').style.background = "rgba(0, 0, 0, 0.7)";
+                    document.getElementById('parking').style.background = "rgba(0, 0, 0, 0.7)";
+                    document.getElementById('neutral').style.background = "rgba(0, 0, 0, 0.7)";
+                }
+                break;
+            case 68: /*Neutral D, R*/
+                if (controlsVeyron.break && Math.abs(Math.round(veyron.speed / veyron.MAX_SPEED * 200)) == 0) {
+                    controlsVeyron.gearDrive = false;
+                    controlsVeyron.gearReverse = false;
+                    controlsVeyron.gearParking = false;
+                    controlsVeyron.gearNeutral = true;
+                    document.getElementById('reverse').style.background = "rgba(0, 0, 0, 0.7)";
+                    document.getElementById('drive').style.background = "rgba(0, 0, 0, 0.7)";
+                    document.getElementById('parking').style.background = "rgba(0, 0, 0, 0.7)";
+                    document.getElementById('neutral').style.background = "rgba(250, 167, 2, 0.8)";
+                }
+                break;
+            case 70: /*Drive F, R*/
+                if (controlsVeyron.break && Math.abs(Math.round(veyron.speed / veyron.MAX_SPEED * 200)) == 0) {
+                    controlsVeyron.gearDrive = true;
+                    controlsVeyron.gearReverse = false;
+                    controlsVeyron.gearParking = false;
+                    controlsVeyron.gearNeutral = false;
+                    document.getElementById('reverse').style.background = "rgba(0, 0, 0, 0.7)";
+                    document.getElementById('drive').style.background = "rgba(250, 167, 2, 0.8)";
+                    document.getElementById('parking').style.background = "rgba(0, 0, 0, 0.7)";
+                    document.getElementById('neutral').style.background = "rgba(0, 0, 0, 0.7)";
                 }
                 break;
             case 74: /*J*/
@@ -183,18 +207,6 @@ function main() {
 
     function onKeyUp(event) {
         switch (event.keyCode) {
-            // case 87: /*W*/
-            //     controlsVeyron.moveForward = false;
-            //     break;
-            // case 83: /*S*/
-            //     controlsVeyron.break = false;
-            //     break;
-            // case 65: /*A*/
-            //     controlsVeyron.moveLeft = false;
-            //     break;
-            // case 68: /*D*/
-            //     controlsVeyron.moveRight = false;
-            //     break;
             case 87: /*W*/
                 controlsVeyron.accelerator = false;
                 break;
