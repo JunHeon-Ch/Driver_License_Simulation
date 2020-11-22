@@ -115,20 +115,20 @@ function map(scene) {
 
     // T자 길 그리기
     // 길쭉한 길
-    street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 10000), crossNoLineMaterial);
+    street = new THREE.Mesh(new THREE.PlaneGeometry(1000, 7000), crossNoLineMaterial);
     street.rotation.x = -Math.PI / 2;
-    street.position.x = -10000;
+    street.position.x = -9700;
     street.position.y = -213;
-    street.position.z = -5700;
+    street.position.z = -4200;
     scene.add(street);
 
     // 주차 공간
-    street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 3000), crossNoLineMaterial);
+    street = new THREE.Mesh(new THREE.PlaneGeometry(1000, 3000), crossNoLineMaterial);
     street.rotation.x = -Math.PI / 2;
     street.rotation.z = -Math.PI / 2;
-    street.position.x = -12000;
+    street.position.x = -11300;
     street.position.y = -213;
-    street.position.z = -6000;
+    street.position.z = -4000;
     scene.add(street);
 
     //SIDEWALK STREET
@@ -266,12 +266,12 @@ function map(scene) {
             sidewalk.position.x = -5000;
             scene.add(sidewalk);
 
-            sidewalk = new THREE.Mesh(new THREE.BoxGeometry(350, 7000, 40), sidewalkMaterial);
+            sidewalk = new THREE.Mesh(new THREE.BoxGeometry(350, 7800, 40), sidewalkMaterial);
             sidewalk.rotation.x = -Math.PI / 2;
             sidewalk.rotation.z = -Math.PI / 2;
             sidewalk.position.z = -19875 + i * 19000;
             sidewalk.position.y = -195;
-            sidewalk.position.x = -14250;
+            sidewalk.position.x = -14100;
             scene.add(sidewalk);
         } else {
             sidewalk = new THREE.Mesh(new THREE.BoxGeometry(350, 17600, 40), sidewalkMaterial);
