@@ -21,22 +21,6 @@
             overflow: hidden;
         }
 
-        #footer {
-            color: orange;
-            position: absolute;
-            bottom: 10px;
-            width: 100%;
-        }
-
-        #velocity {
-            color: red;
-            position: absolute;
-            bottom: 110px;
-            width: 100%;
-            font-size: 20px;
-            text-align: center;
-        }
-
         #start_background {
             background-color: rgba(0, 0, 0, 0.7);
             position: absolute;
@@ -53,15 +37,6 @@
             border-radius: 5px;
             transition: all 0.3s ease 0s;
             border: 0;
-        }
-
-        #gear {
-            color: black;
-            position: absolute;
-            bottom: 110px;
-            width: 100%;
-            font-size: 20px;
-            text-align: right;
         }
 
         #startBtn:hover {
@@ -87,6 +62,64 @@
             background-color: rgba(0, 0, 0, 0.7);
             color: white;
         }
+
+        #velocity {
+            margin: 10px;
+            margin-top: 80px;
+            font-size: 30px;
+            border-radius: 5px;
+            padding: 10px 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+        }
+
+        #gear {
+            margin: 10px;
+            margin-top: 160px;
+            border-radius: 5px;
+            padding: 10px 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        #parking {
+            font-size: 30px;
+            padding: 10px 20px;
+            background-color: rgba(250, 167, 2, 0.8);
+            color: white;
+        }
+
+        #reverse {
+            font-size: 30px;
+            padding: 10px 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+        }
+
+        #neutral {
+            font-size: 30px;
+            padding: 10px 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+        }
+
+        #drive {
+            font-size: 30px;
+            padding: 10px 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+        }
+
+        #manual {
+            font-size: 16px;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: orange;
+            position: absolute;
+            bottom: 10px;
+            border-radius: 5px;
+        }
+
     </style>
 </head>
 
@@ -104,19 +137,32 @@
     <p id="timer">00:00:00</p>
 </div>
 
+<div style="position:absolute;">
+    <p id="velocity"></p>
+</div>
+
+<div id='gear' style="position:absolute;">
+    <div id="parking">P</div>
+    <div id="reverse">R</div>
+    <div id="neutral">N</div>
+    <div id="drive">D</div>
+</div>
+
 <!-- Div which will hold the Output -->
-<div id="footer">
-    <div class="c">Accelerator: <span class="h">W</span> / Break: <span class="h">R</span></div>
-    <div class="c">Gear: <span class="h">Drive: S</span> / <span class="h">Reverse: F</span></div>
-    <div class="c">Handle: <span class="h">Left: J</span> / <span class="h">Right: L</span></div>
-    <div class="c">Default cameras: <span class="h">1: Back</span> / <span class="h">2: Internal</span> / <span
+<div id="manual">
+    <div class="c">Accelerator > <span class="h">W</span> / Break > <span class="h">R</span></div>
+    <div class="c">Gear > <span class="h">P: A</span> / <span class="h">R: S</span> / <span class="h">N: D</span> / <span class="h">D: F</span></div>
+    <div class="c">Handle > <span class="h">Left: J</span> / <span class="h">Right: L</span></div>
+    <div class="c">Default cameras > <span class="h">1: Back</span> / <span class="h">2: Internal</span> / <span
             class="h">3: Front</span>
     </div>
-    Free camera: MOUSE
+    Free camera > mouse
 </div>
-<div id="velocity">
-    <p></p>
-</div>
+
+<!--<div id="velocity">-->
+<!--    <p></p>-->
+<!--</div>-->
+
 <div id="Stats-output"></div>
 <script type="text/javascript" src="./build/stats.js"></script>
 <div id="WebGL-output"></div>
