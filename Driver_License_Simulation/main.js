@@ -23,6 +23,7 @@ function main() {
 	// //PRELIMINARY OPERATIONS
 	// var stats = initStats();
 
+
 	// create a scene, that will hold all our elements such as objects, cameras and lights.
 	var scene = new THREE.Scene();
 
@@ -77,6 +78,8 @@ function main() {
 
 	render();
 
+
+
 	// //STATS FUNCTION
 	// function initStats() {
 	//     var stats = new Stats();
@@ -118,6 +121,8 @@ function main() {
 			cameraTarget.x = currentCamera.root.position.x;
 			cameraTarget.z = currentCamera.root.position.z;
 		}
+
+
 	}
 
 	//CAMERA MANAGEMENT
