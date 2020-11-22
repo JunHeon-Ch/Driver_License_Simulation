@@ -28,42 +28,123 @@
             width: 100%;
         }
 
-        #velocity {
-            color: red;
+        #start_background {
+            background-color: rgba(0, 0, 0, 0.7);
             position: absolute;
-            bottom: 110px;
+            height: 100%;
             width: 100%;
-            font-size: 20px;
             text-align: center;
         }
 
-        #gear {
-            color: black;
-            position: absolute;
-            bottom: 110px;
-            width: 100%;
-            font-size: 20px;
-            text-align: right;
+        #startBtn {
+            padding: 20px 40px;
+            font-size: 30px;
+            color: white;
+            background-color: #ff5500;
+            border-radius: 5px;
+            transition: all 0.3s ease 0s;
+            border: 0;
         }
 
+        #startBtn:hover {
+            padding: 25px 45px;
+            font-size: 32px;
+            color: white;
+            background-color: #faa702;
+            cursor: pointer;
+            transition: all 0.3s ease 0s;
+        }
+
+        #countdown {
+            /*color: rgba(250, 167, 2, 0.8);*/
+            color: rgba(255, 255, 255, 0.8);;
+            font-size: 80px;
+        }
+
+        #timer {
+            margin: 10px;
+            font-size: 30px;
+            border-radius: 5px;
+            padding: 10px 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+        }
     </style>
 </head>
 
 <body onload="main()">
+
+<div id="start_background" style="display: table;">
+    <!--   <p>Loading ...</p>-->
+    <div style="display: table-cell; vertical-align: middle;">
+        <input type="button" id="startBtn" value="START" onclick="startButton()">
+        <p id="countdown"></p>
+    </div>
+</div>
+
+<div style="position:absolute;">
+    <p id="timer">00:00:00</p>
+</div>
+
 <!-- Div which will hold the Output -->
 <div id="footer">
     <div class="c">Accelerator: <span class="h">W</span> / Break: <span class="h">R</span></div>
     <div class="c">Gear: <span class="h">Drive: S</span> / <span class="h">Reverse: F</span></div>
-    <div class="c">Handle: <span class="h">Left: J</span> / <span class="h">Right: L</span></div>
     <div class="c">Default cameras: <span class="h">1: Back</span> / <span class="h">2: Internal</span> / <span
             class="h">3: Front</span>
     </div>
     Free camera: MOUSE
 </div>
-<div id="velocity">
-    <p></p>
-</div>
 <div id="Stats-output"></div>
+<script type="text/javascript" src="./build/stats.js"></script>
 <div id="WebGL-output"></div>
 <script src="main.js"></script>
+<script>
+    var count = 4;
+    var countdown_f;
+
+    var time = 0;
+    var timer_f;
+
+    function startButton() {
+        document.getElementById('startBtn').style.display = "none";
+        countdown_f = setInterval(countdown, 1000);
+    }
+
+    function countdown() {
+        count--;
+        if (count == 0) {
+            document.getElementById('countdown').style.color = "rgba(250, 167, 2, 0.8)";
+            document.getElementById('countdown').innerText = 'START!';
+            document.getElementById('start_background').style.background = "transparent";
+            // setTimeout(document.getElementById('countdown').style.display = "none", 1000);
+        } else if (count < 0) {
+            clearInterval(countdown_f);
+            document.getElementById('countdown').style.display = "none";
+            timer_f = setInterval(stopwatch, 10); //0.01초에 한번씩
+        } else {
+            document.getElementById('countdown').innerText = '' + count;
+        }
+    }
+
+    function stopwatch() {
+        time++;
+        var mins = Math.floor(time / 100 / 60);
+        var secs = Math.floor(time / 100) % 60;
+        var milisec = time % 100;
+
+        if (mins < 10) {
+            mins = "0" + mins;
+        }
+        if (secs < 10) {
+            secs = "0" + secs;
+        }
+        if (milisec < 10) {
+            milisec = "0" + milisec;
+        }
+        document.getElementById('timer').innerText = mins + ":" + secs + ":" + milisec;
+    }
+
+</script>
 </body>
+</html>
