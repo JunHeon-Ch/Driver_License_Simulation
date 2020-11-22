@@ -28,6 +28,15 @@
             width: 100%;
         }
 
+        #velocity {
+            color: red;
+            position: absolute;
+            bottom: 110px;
+            width: 100%;
+            font-size: 20px;
+            text-align: center;
+        }
+
         #start_background {
             background-color: rgba(0, 0, 0, 0.7);
             position: absolute;
@@ -44,6 +53,15 @@
             border-radius: 5px;
             transition: all 0.3s ease 0s;
             border: 0;
+        }
+
+        #gear {
+            color: black;
+            position: absolute;
+            bottom: 110px;
+            width: 100%;
+            font-size: 20px;
+            text-align: right;
         }
 
         #startBtn:hover {
@@ -90,10 +108,14 @@
 <div id="footer">
     <div class="c">Accelerator: <span class="h">W</span> / Break: <span class="h">R</span></div>
     <div class="c">Gear: <span class="h">Drive: S</span> / <span class="h">Reverse: F</span></div>
+    <div class="c">Handle: <span class="h">Left: J</span> / <span class="h">Right: L</span></div>
     <div class="c">Default cameras: <span class="h">1: Back</span> / <span class="h">2: Internal</span> / <span
             class="h">3: Front</span>
     </div>
     Free camera: MOUSE
+</div>
+<div id="velocity">
+    <p></p>
 </div>
 <div id="Stats-output"></div>
 <script type="text/javascript" src="./build/stats.js"></script>
