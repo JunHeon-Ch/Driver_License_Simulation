@@ -28,7 +28,7 @@
             width: 100%;
             text-align: center;
         }
-        #emergency_background {
+        #emergency_background, #parking_background {
             background-color: transparent;
             position: absolute;
             height: 100%;
@@ -55,7 +55,7 @@
             transition: all 0.3s ease 0s;
         }
 
-        #countdown {
+        #countdown, #parking_result{
             /*color: rgba(250, 167, 2, 0.8);*/
             color: rgba(255, 255, 255, 0.8);;
             font-size: 80px;
@@ -144,7 +144,12 @@
         <img id="stopSuddenBtn" src="warning.png" style="cursor: pointer;" onclick="stopSudden()">
     </div>
 </div>
-
+<div id="parking_background" style="display: none;">
+    <div style="display: table-cell; vertical-align: middle;">
+<!--        <p id="parking_timer" style="font-size: 30px; color:white; transform: translateY(-200px);" onclick="successParking()"></p> 테스트-클릭하면 success-->
+        <p id="parking_timer" style="font-size: 30px; color:white; transform: translateY(-200px);"></p>
+    </div>
+</div>
 <div style="position:absolute;">
     <p id="timer">00:00:00</p>
 </div>
@@ -186,16 +191,20 @@
     var time = 0;
     var timer_f;
 
-    var sudden_time=1000;
-    // var sudden_time;
+    // var sudden_time=1000;
+    var sudden_time;
     var sudden_f;
     var sudden_red=true;
     // var sudden_end=false;
     // document.getElementById('emergency_background').style.display = "none";
 
+    // 주차
+    var parking_time=1000;
+    var parking_timer_f;
+
     function startButton() {
         document.getElementById('startBtn').style.display = "none";
-        // randomSuddenDanger(); // 돌발이 나타날 랜덤 초 생성
+        randomSuddenDanger(); // 돌발이 나타날 랜덤 초 생성
         countdown_f = setInterval(countdown, 1000);
     }
 
@@ -237,6 +246,54 @@
         }
         document.getElementById('timer').innerText = mins + ":" + secs + ":" + milisec;
     }
+
+    // 주차 시작
+    function startParking(){
+        document.getElementById('parking_background').style.display = "table";
+        parking_timer_f = setInterval(timer1Min, 10);
+    }
+    // 주차 1분 안에 성공했을 때
+    function successParking(){
+        clearInterval(parking_timer_f);
+        document.getElementById('parking_timer').style.color = "#1DDB16";
+        document.getElementById('parking_timer').style.fontSize = "50px";
+        document.getElementById('parking_timer').innerText = 'SUCCESS!';
+        setTimeout(endParking, 3000);
+    }
+    function endParking(){  // T자 끝
+        document.getElementById('parking_background').style.display = "none"
+    }
+
+    function timer1Min() {
+        parking_time--;
+
+        if(parking_time==0){
+            // FAIL 표시 해주고 3초 뒤 안내메세지 끝
+            document.getElementById('parking_timer').style.color = "#FF0000";
+            document.getElementById('parking_timer').style.fontSize = "50px";
+            document.getElementById('parking_timer').innerText = 'FAIL';
+            setTimeout(endParking, 3000);
+        }else if(parking_time<0){
+            clearInterval(parking_timer_f);
+        }else {
+            var mins = Math.floor(parking_time / 100 / 60);
+            var secs = Math.floor(parking_time / 100) % 60;
+            var milisec = parking_time % 100;
+
+            if (mins < 10) {
+                mins = "0" + mins;
+            }
+            if (secs < 10) {
+                secs = "0" + secs;
+            }
+            if (milisec < 10) {
+                milisec = "0" + milisec;
+            }
+            document.getElementById('parking_timer').innerText = mins + ":" + secs + ":" + milisec;
+        }
+    }
+
+
     function showSuddenDanger() {
         if(sudden_red){
             document.getElementById('emergency_background').style.background = "rgba(255, 0, 0, 0.4)";
@@ -254,7 +311,7 @@
         document.getElementById('emergency_background').style.display = "none";
     }
     function randomSuddenDanger(){
-        sudden_time = Math.floor( Math.random()  * 60 + 120 )*100; //120초(2분)~180초(3분) 사이의 난수 생성
+        sudden_time = Math.floor( Math.random()  * 60 + 60 )*100; //60초(1분)~120초(2분) 사이의 난수 생성
         console.log("random time : " + sudden_time/100);
     }
 
