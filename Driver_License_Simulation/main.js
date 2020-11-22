@@ -133,10 +133,10 @@ function main() {
 
     function onKeyDown(event) {
         switch (event.keyCode) {
-            case 87: /*W*/
+            case 82: /*R*/
                 controlsVeyron.accelerator = true;
                 break;
-            case 82: /*R*/
+            case 87: /*W*/
                 controlsVeyron.break = true;
                 break;
             case 65: /*Parking A, R*/
@@ -207,10 +207,10 @@ function main() {
 
     function onKeyUp(event) {
         switch (event.keyCode) {
-            case 87: /*W*/
+            case 82: /*R*/
                 controlsVeyron.accelerator = false;
                 break;
-            case 82: /*R*/
+            case 87: /*W*/
                 controlsVeyron.break = false;
                 break;
             case 74: /*J*/
