@@ -413,6 +413,37 @@ function lamp(x,y,z,angle,scene)
 	streetLamp.rotation.y=angle;
 	scene.add(streetLamp);
 }
+
+function trafficLight(x,y,z,angle,scene) {
+	var streetTrafficLight = new THREE.Object3D();
+
+	var redTrafficLightMaterial   = new THREE.MeshLambertMaterial( { color: 0xfffa93, ambient: 0xfffa93} );
+	var yellowTrafficLightMaterial   = new THREE.MeshLambertMaterial( { color: 0xfffa93, ambient: 0xfffa93} );
+	var redTrafficLightMaterial   = new THREE.MeshLambertMaterial( { color: 0xfffa93, ambient: 0xfffa93} );
+	var trfficLight = new THREE.Mesh(new THREE.SphereGeometry( 20, 32, 32, 0, Math.PI), redTrafficLightMaterial);
+	trfficLight.rotation.x=Math.PI/2;
+	streetTrafficLight.add(trfficLight);
+
+	var textureMetal=new THREE.TextureLoader().load( 'texture/black-metal.jpg');
+	textureMetal.minFilter = THREE.MipMapLinearFilter;
+	textureMetal.magFilter = THREE.NearestFilter;
+
+	var pole = new THREE.Mesh(new THREE.CylinderGeometry( 10, 10, 650, 32), new THREE.MeshLambertMaterial( { color: 0xffffff, map:textureMetal } ));
+	trfficLight.add(pole);
+	pole.rotation.x=Math.PI/2;
+	pole.position.y=100;
+	pole.position.z=305;
+
+	var bracket = new THREE.Mesh(new THREE.BoxGeometry( 50, 20, 150), new THREE.MeshLambertMaterial( { color: 0xffffff, map:textureMetal } ));
+	trfficLight.add(bracket);
+	bracket.rotation.x=Math.PI/2;
+	bracket.position.y=30;
+	bracket.position.z=-5;
+
+	streetTrafficLight.position.set(x,y+600,z);
+	streetTrafficLight.rotation.y=angle;
+	scene.add(streetTrafficLight);
+}
 /*****************************************************************************************************/
 
 /*****************************************************************************************************/

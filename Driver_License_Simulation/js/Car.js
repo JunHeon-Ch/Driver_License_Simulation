@@ -30,7 +30,7 @@ THREE.Car = function () {
 
 	this.MAX_WHEEL_ROTATION = 0.6;
 
-	this.FRONT_ACCELERATION = 1250;
+	this.FRONT_ACCELERATION = 800;
 	this.BACK_ACCELERATION = 1500;
 	this.FRONT_DECCELERATION = 750;
 
@@ -115,12 +115,12 @@ THREE.Car = function () {
 
 		loader.load(bodyURL, function (geometry, materials) {
 
-			createBody(geometry, materials)
+			createBody(geometry, materials);
 
 		});
 		loader.load(wheelURL, function (geometry, materials) {
 
-			createWheels(geometry, materials)
+			createWheels(geometry, materials);
 
 		});
 
@@ -131,8 +131,10 @@ THREE.Car = function () {
 
 		if (controls.accelerator) {
 			if (controls.gearDrive) {
-				this.speed = THREE.Math.clamp(this.speed + delta * this.FRONT_ACCELERATION, this.MAX_REVERSE_SPEED, this.MAX_SPEED);
-				this.acceleration = THREE.Math.clamp(this.acceleration + delta, -1, 1);
+				if (this.speed < 5000) {
+					this.speed = THREE.Math.clamp(this.speed + delta * this.FRONT_ACCELERATION, this.MAX_REVERSE_SPEED, this.MAX_SPEED);
+					this.acceleration = THREE.Math.clamp(this.acceleration + delta, -1, 1);
+				}
 			} else if (controls.gearReverse) {
 				this.speed = THREE.Math.clamp(this.speed - delta * this.BACK_ACCELERATION, this.MAX_REVERSE_SPEED, this.MAX_SPEED);
 				this.acceleration = THREE.Math.clamp(this.acceleration - delta, -1, 1);
@@ -149,15 +151,15 @@ THREE.Car = function () {
 		}
 
 		if (controls.moveLeft) {
-
-			this.wheelOrientation = THREE.Math.clamp(this.wheelOrientation + delta * this.WHEEL_ANGULAR_ACCELERATION, -this.MAX_WHEEL_ROTATION, this.MAX_WHEEL_ROTATION);
-
+			if (this.wheelOrientation < 50) {
+				this.wheelOrientation = THREE.Math.clamp(this.wheelOrientation + delta * this.WHEEL_ANGULAR_ACCELERATION, -this.MAX_WHEEL_ROTATION, this.MAX_WHEEL_ROTATION);
+			}
 		}
 
 		if (controls.moveRight) {
-
-			this.wheelOrientation = THREE.Math.clamp(this.wheelOrientation - delta * this.WHEEL_ANGULAR_ACCELERATION, -this.MAX_WHEEL_ROTATION, this.MAX_WHEEL_ROTATION);
-
+			if (this.wheelOrientation < 50) {
+				this.wheelOrientation = THREE.Math.clamp(this.wheelOrientation - delta * this.WHEEL_ANGULAR_ACCELERATION, -this.MAX_WHEEL_ROTATION, this.MAX_WHEEL_ROTATION);
+			}
 		}
 
 		// speed decay
@@ -230,7 +232,6 @@ THREE.Car = function () {
 		var wheelDelta = forwardDelta * angularSpeedRatio;
 
 		if (this.loaded) {
-
 			this.frontLeftWheelMesh.rotation.x += wheelDelta;
 			this.frontRightWheelMesh.rotation.x += wheelDelta;
 			this.backLeftWheelMesh.rotation.x += wheelDelta;

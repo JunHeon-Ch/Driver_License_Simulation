@@ -16,7 +16,7 @@
 	"DbgColor" : 15658734,
 	"DbgIndex" : 0,
 	"DbgName" : "ColorBlack",
-	"colorDiffuse" : [0.173184, 0.173184, 0.173184],
+	"colorDiffuse" : [1.0, 0.58823, 0.07843],
 	"colorSpecular" : [0.75, 0.75, 0.75],
 	"illumination" : 2,
 	"opticalDensity" : 1.0,
@@ -27,7 +27,7 @@
 	"DbgColor" : 15597568,
 	"DbgIndex" : 1,
 	"DbgName" : "02___Default",
-	"colorDiffuse" : [0.386496, 0.0, 0.0],
+	"colorDiffuse" : [1.0, 0.58823, 0.07843],
 	"colorSpecular" : [0.75, 0.75, 0.75],
 	"illumination" : 2,
 	"opticalDensity" : 1.0,
@@ -103,6 +103,6 @@
 	"opacity" : 0.5
 	}],
 
-    "buffers": "veyron_body_bin.bin"
+    "buffers": "veyron_body_binary.bin"
 
 }
