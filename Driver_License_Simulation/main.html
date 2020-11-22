@@ -173,12 +173,7 @@
     <div class="c">Default cameras > <span class="h">1: Back</span> / <span class="h">2: Internal</span> / <span
             class="h">3: Front</span>
     </div>
-    Free camera > mouse
 </div>
-
-<!--<div id="velocity">-->
-<!--    <p></p>-->
-<!--</div>-->
 
 <div id="Stats-output"></div>
 <script type="text/javascript" src="./build/stats.js"></script>
@@ -197,10 +192,6 @@
     var sudden_red=true;
     // var sudden_end=false;
     // document.getElementById('emergency_background').style.display = "none";
-
-    // 주차
-    var parking_time=1000;
-    var parking_timer_f;
 
     function startButton() {
         document.getElementById('startBtn').style.display = "none";
@@ -292,7 +283,6 @@
             document.getElementById('parking_timer').innerText = mins + ":" + secs + ":" + milisec;
         }
     }
-
 
     function showSuddenDanger() {
         if(sudden_red){

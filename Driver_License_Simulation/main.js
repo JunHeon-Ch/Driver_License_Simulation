@@ -21,6 +21,12 @@ var FOLLOW_CAMERA = true;
 var i;
 var sprites = [];
 
+// 주차
+var parking_time=12000;
+var parking_timer_f;
+var parking_start_cnt = 0;
+var parking_success_cnt = 0;
+
 function main() {
     // //PRELIMINARY OPERATIONS
     // var stats = initStats();
@@ -62,7 +68,7 @@ function main() {
     veyron.modelScale = 2.5;
     veyron.backWheelOffset = 2;
     veyron.callback = function (object) {
-        addCar(object, -300, -215, -2000, 0);
+        addCar(object, -11100, -215, -11100, 0);
     };
     veyron.loadPartsBinary("obj/veyron/parts/veyron_body_binary.js", "obj/veyron/parts/veyron_wheel_binary.js");
     config["veyron"].model = veyron;
@@ -94,11 +100,25 @@ function main() {
 
     //RENDER FUNCTION
     function render() {
-        // stats.update();
         document.getElementById('velocity').innerText = Math.abs(Math.round(veyron.speed / veyron.MAX_SPEED * 200)) + ' KM';
 
+        if (veyron.root.position.x <= -5260 && veyron.root.position.x >= -6260 && veyron.root.position.z <= -400) {
+            console.log("123");
+            if (parking_start_cnt == 0) {
+                startParking();
+                parking_start_cnt++;
+            }
+        }
+
+        if (veyron.root.position.x <= -7500 && veyron.root.position.z <= -3800 && veyron.root.position.z >= -4200) {
+            if (parking_success_cnt == 0) {
+                successParking();
+                parking_success_cnt++;
+            }
+        }
         console.log(veyron.root.position.x);
         console.log(veyron.root.position.z);
+
         var delta = clock.getDelta();
         requestAnimationFrame(render);
         renderer.render(scene, camera);
@@ -219,5 +239,23 @@ function main() {
             case 76: /*L*/
                 controlsVeyron.moveRight = false;
         }
+    }
+
+    // 주차 시작
+    function startParking(){
+        document.getElementById('parking_background').style.display = "table";
+        parking_timer_f = setInterval(timer1Min, 10);
+    }
+
+    // 주차 1분 안에 성공했을 때
+    function successParking(){
+        clearInterval(parking_timer_f);
+        document.getElementById('parking_timer').style.color = "#1DDB16";
+        document.getElementById('parking_timer').style.fontSize = "50px";
+        document.getElementById('parking_timer').innerText = 'SUCCESS!';
+        setTimeout(endParking, 3000);
+    }
+    function endParking(){  // T자 끝
+        document.getElementById('parking_background').style.display = "none"
     }
 }
