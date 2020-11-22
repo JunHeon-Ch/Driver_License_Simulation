@@ -131,7 +131,7 @@ THREE.Car = function () {
 
 		if (controls.accelerator) {
 			if (controls.gearDrive) {
-				if (this.speed < 5000) {
+				if (this.speed < this.MAX_SPEED) {
 					this.speed = THREE.Math.clamp(this.speed + delta * this.FRONT_ACCELERATION, this.MAX_REVERSE_SPEED, this.MAX_SPEED);
 					this.acceleration = THREE.Math.clamp(this.acceleration + delta, -1, 1);
 				}

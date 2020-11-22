@@ -1,42 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Driver License Simulation</title>
-	<script type="text/javascript" src="./build/three.js"></script>
-	<script type="text/javascript" src="./build/dat.gui.js"></script>
-	<script type="text/javascript" src="js/controls/OrbitControls.js"></script>
-	<script type="text/javascript" src="js/three.js"></script>
-	<script type="text/javascript" src="js/loaders/BinaryLoader.js"></script>
-	<script type="text/javascript" src="js/loaders/OBJLoader.js"></script>
-	<script type="text/javascript" src="js/Detector.js"></script>
-	<script type="text/javascript" src="js/libs/stats.min.js"></script>
-	<script type="text/javascript" src="map.js"></script>
-	<script type="text/javascript" src="objects.js"></script>
-	<script src="js/Coordinates.js"></script>
-	<script src="js/Car.js"></script>
-	<style>
-		body{
-			/* set margin to 0 and overflow to hidden, to go fullscreen */
-			margin: 0;
-			overflow: hidden;
-		}
-		#footer { color: orange; position: absolute; bottom: 10px; width: 100%; }
-	</style>
+    <title>Driver License Simulation</title>
+    <script type="text/javascript" src="./build/three.js"></script>
+    <script type="text/javascript" src="./build/dat.gui.js"></script>
+    <script type="text/javascript" src="js/controls/OrbitControls.js"></script>
+    <script type="text/javascript" src="js/three.js"></script>
+    <script type="text/javascript" src="js/loaders/BinaryLoader.js"></script>
+    <script type="text/javascript" src="js/loaders/OBJLoader.js"></script>
+    <script type="text/javascript" src="js/Detector.js"></script>
+    <script type="text/javascript" src="js/libs/stats.min.js"></script>
+    <script type="text/javascript" src="map.js"></script>
+    <script type="text/javascript" src="objects.js"></script>
+    <script src="js/Coordinates.js"></script>
+    <script src="js/Car.js"></script>
+    <style>
+        body {
+            /* set margin to 0 and overflow to hidden, to go fullscreen */
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #footer {
+            color: orange;
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+        }
+
+        #velocity {
+            color: red;
+            position: absolute;
+            bottom: 110px;
+            width: 100%;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        #gear {
+            color: black;
+            position: absolute;
+            bottom: 110px;
+            width: 100%;
+            font-size: 20px;
+            text-align: right;
+        }
+
+    </style>
 </head>
 
 <body onload="main()">
 <!-- Div which will hold the Output -->
 <div id="footer">
-	<div class="c">Accelerator: <span class="h">W</span> / Break: <span class="h">R</span></div>
-	<div class="c">Gear: <span class="h">Drive: S</span> / <span class="h">Reverse: F</span></div>
-	<div class="c">Handle: <span class="h">Left: J</span> / <span class="h">Right: L</span></div>
-	<div class="c">Default cameras: <span class="h">1: Back</span> / <span class="h">2: Internal</span> / <span class="h">3: Front</span>
-	</div>
-
-	Free camera: MOUSE
+    <div class="c">Accelerator: <span class="h">W</span> / Break: <span class="h">R</span></div>
+    <div class="c">Gear: <span class="h">Drive: S</span> / <span class="h">Reverse: F</span></div>
+    <div class="c">Handle: <span class="h">Left: J</span> / <span class="h">Right: L</span></div>
+    <div class="c">Default cameras: <span class="h">1: Back</span> / <span class="h">2: Internal</span> / <span
+            class="h">3: Front</span>
+    </div>
+    Free camera: MOUSE
 </div>
-<div id="Stats-output"></div>
-<script type="text/javascript" src="./build/stats.js"></script>
+<div id="velocity">
+    <p></p>
+</div>
 <div id="WebGL-output"></div>
 <script src="main.js"></script>
 </body>
