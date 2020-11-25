@@ -134,7 +134,11 @@ function map(scene) {
     scene.add(street);
 
     // TRAFFIC LIGHT
-    trafficLight(-1000, -175, 1000, Math.PI / 2, scene);
+    // angle을 2로 나누면 90도로 줄어든다.
+    trafficLight(-1000, -175, 1000, Math.PI / 2, scene);    // 오른쪽
+    trafficLight(1000, -175, -1000, -Math.PI / 2, scene);   // 왼쪽
+    trafficLight(1000, -175, 1000, Math.PI, scene);     //  정면
+    trafficLight(-1000, -175, -1000, Math.PI*2, scene);     //  정면
 
     //SIDEWALK STREET
     var sidewalk;
@@ -337,7 +341,7 @@ function map(scene) {
     }
     for (i = 0; i < 2; i++) {
         // 왼쪽 아래(위쪽)과 가운데(위쪽)
-        if(i===0){  // 아래
+        if (i === 0) {  // 아래
             sidewalk = new THREE.Mesh(new THREE.BoxGeometry(350, 10000, 40), sidewalkMaterial);
             sidewalk.rotation.x = -Math.PI / 2;
             sidewalk.rotation.z = -Math.PI / 2;
@@ -349,7 +353,7 @@ function map(scene) {
             for (j = 0; j < 5; j++) {
                 lamp(1200 + j * 2000, -175, -11200, 0, scene);
             }
-        }else{  // 가운데
+        } else {  // 가운데
             sidewalk = new THREE.Mesh(new THREE.BoxGeometry(350, 10000, 40), sidewalkMaterial);
             sidewalk.rotation.x = -Math.PI / 2;
             sidewalk.rotation.z = -Math.PI / 2;
