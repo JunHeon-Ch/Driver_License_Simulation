@@ -2,6 +2,14 @@
 <html>
 <head>
     <title>Driver License Simulation</title>
+    <style type="text/css">
+        @font-face {
+            font-family: mainFont;
+            src: url("./font.otf");
+            font-style: normal;
+            font-weight: normal;
+        }
+    </style>
     <script type="text/javascript" src="./build/three.js"></script>
     <script type="text/javascript" src="./build/dat.gui.js"></script>
     <script type="text/javascript" src="js/controls/OrbitControls.js"></script>
@@ -19,6 +27,7 @@
             /* set margin to 0 and overflow to hidden, to go fullscreen */
             margin: 0;
             overflow: hidden;
+            font-family: 'mainFont';
         }
 
         #start_background {
@@ -62,6 +71,7 @@
         }
 
         #timer {
+            width: 135px;
             margin: 10px;
             font-size: 30px;
             border-radius: 5px;
@@ -71,6 +81,7 @@
         }
 
         #velocity {
+            width: 135px;
             margin: 10px;
             margin-top: 80px;
             font-size: 30px;
@@ -78,6 +89,7 @@
             padding: 10px 20px;
             background-color: rgba(0, 0, 0, 0.7);
             color: white;
+            text-align: center;
         }
 
         #gear {
@@ -138,18 +150,21 @@
         <p id="countdown"></p>
     </div>
 </div>
-<div id="emergency_background" style="display: none;">
-    <div style="display: table-cell; vertical-align: middle;">
-<!--        <input type="button" id="stopSuddenBtn" value="START" src="emergency_light" onclick="stopSudden()">-->
-        <img id="stopSuddenBtn" src="warning.png" style="cursor: pointer;" onclick="stopSudden()">
-    </div>
-</div>
+
 <div id="parking_background" style="display: none;">
     <div style="display: table-cell; vertical-align: middle;">
 <!--        <p id="parking_timer" style="font-size: 30px; color:white; transform: translateY(-200px);" onclick="successParking()"></p> 테스트-클릭하면 success-->
         <p id="parking_timer" style="font-size: 30px; color:white; transform: translateY(-200px);"></p>
     </div>
 </div>
+
+<div id="emergency_background" style="display: none;">
+    <div style="display: table-cell; vertical-align: middle;">
+        <!--        <input type="button" id="stopSuddenBtn" value="START" src="emergency_light" onclick="stopSudden()">-->
+        <img id="stopSuddenBtn" src="warning.png" style="cursor: pointer;" onclick="stopSudden()">
+    </div>
+</div>
+
 <div style="position:absolute;">
     <p id="timer">00:00:00</p>
 </div>
