@@ -50,6 +50,7 @@ function main() {
     //Import the map
     map(scene);
 
+
     //Lights
     var ambientLight = new THREE.AmbientLight(0x999999);
     scene.add(ambientLight);
