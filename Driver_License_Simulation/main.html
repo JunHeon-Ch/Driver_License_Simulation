@@ -199,7 +199,6 @@
     // document.getElementById('emergency_background').style.display = "none";
 
     // 주차
-    var parking_time=1000;
     var parking_timer_f;
 
     function startButton() {
@@ -246,53 +245,6 @@
         }
         document.getElementById('timer').innerText = mins + ":" + secs + ":" + milisec;
     }
-
-    // 주차 시작
-    function startParking(){
-        document.getElementById('parking_background').style.display = "table";
-        parking_timer_f = setInterval(timer1Min, 10);
-    }
-    // 주차 1분 안에 성공했을 때
-    function successParking(){
-        clearInterval(parking_timer_f);
-        document.getElementById('parking_timer').style.color = "#1DDB16";
-        document.getElementById('parking_timer').style.fontSize = "50px";
-        document.getElementById('parking_timer').innerText = 'SUCCESS!';
-        setTimeout(endParking, 3000);
-    }
-    function endParking(){  // T자 끝
-        document.getElementById('parking_background').style.display = "none"
-    }
-
-    function timer1Min() {
-        parking_time--;
-
-        if(parking_time==0){
-            // FAIL 표시 해주고 3초 뒤 안내메세지 끝
-            document.getElementById('parking_timer').style.color = "#FF0000";
-            document.getElementById('parking_timer').style.fontSize = "50px";
-            document.getElementById('parking_timer').innerText = 'FAIL';
-            setTimeout(endParking, 3000);
-        }else if(parking_time<0){
-            clearInterval(parking_timer_f);
-        }else {
-            var mins = Math.floor(parking_time / 100 / 60);
-            var secs = Math.floor(parking_time / 100) % 60;
-            var milisec = parking_time % 100;
-
-            if (mins < 10) {
-                mins = "0" + mins;
-            }
-            if (secs < 10) {
-                secs = "0" + secs;
-            }
-            if (milisec < 10) {
-                milisec = "0" + milisec;
-            }
-            document.getElementById('parking_timer').innerText = mins + ":" + secs + ":" + milisec;
-        }
-    }
-
 
     function showSuddenDanger() {
         if(sudden_red){
