@@ -69,7 +69,7 @@ function main() {
     veyron.modelScale = 2.5;
     veyron.backWheelOffset = 2;
     veyron.callback = function (object) {
-        addCar(object, -11100, -215, -11100, 0);
+        addCar(object, -11720, -215, -11100, 0);
     };
     veyron.loadPartsBinary("obj/veyron/parts/veyron_body_binary.js", "obj/veyron/parts/veyron_wheel_binary.js");
     config["veyron"].model = veyron;
@@ -115,6 +115,12 @@ function main() {
 
         if (veyron.root.position.x >= -7500 && veyron.root.position.x <= -7000 && veyron.root.position.z <= -3800 && veyron.root.position.z >= -4200) {
             if (parking_success_cnt == 0) {
+                var audio = new Audio('./sound.mp3');
+
+                // Audio 객체생성 ②
+                var audio = new Audio();
+                audio.src = "./sound.mp3";
+                audio.play();
                 parking_success_cnt++;
             }
         }

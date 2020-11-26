@@ -93,22 +93,6 @@ THREE.Car = function () {
 		}
 	};
 
-	// this.loadPartsJSON = function (bodyURL, wheelURL) {
-	//     var loader = new THREE.JSONLoader();
-	//
-	//     loader.load(bodyURL, function (geometry, materials) {
-	//
-	//         createBody(geometry, materials)
-	//
-	//     });
-	//     loader.load(wheelURL, function (geometry, materials) {
-	//
-	//         createWheels(geometry, materials)
-	//
-	//     });
-	//
-	// };
-
 	this.loadPartsBinary = function (bodyURL, wheelURL) {
 
 		var loader = new THREE.BinaryLoader();
