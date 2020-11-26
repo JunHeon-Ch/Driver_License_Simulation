@@ -74,21 +74,6 @@ function map(scene) {
     square.position.y = -215;
     scene.add(square);
 
-    // // 바깥에 반쪼가리 잔디밭 2개 더 그리기
-    // square = new THREE.Mesh(new THREE.PlaneGeometry(21000, 9000), grassMaterial);
-    // square.rotation.x = -Math.PI / 2;
-    // square.position.x = 9500;
-    // square.position.z = 15200;
-    // square.position.y = -215;
-    // scene.add(square);
-    //
-    // square = new THREE.Mesh(new THREE.PlaneGeometry(21000, 9000), grassMaterial);
-    // square.rotation.x = -Math.PI / 2;
-    // square.position.x = -9500;
-    // square.position.z = 15200;
-    // square.position.y = -215;
-    // scene.add(square);
-    //
     square = new THREE.Mesh(new THREE.PlaneGeometry(16000 * PERCENT, 17600 * PERCENT), grassMaterial);
     square.rotation.x = -Math.PI / 2;
     square.position.x = -9500 * PERCENT;
@@ -134,7 +119,90 @@ function map(scene) {
     scene.add(street);
 
     // TRAFFIC LIGHT
-    trafficLight(-1000, -175, 1000, Math.PI / 2, scene);
+    var horizontalArray = [];
+    var verticalArray = [];
+
+    // angle을 2로 나누면 90도로 줄어든다.
+    horizontalArray.push(trafficLight(-1000, -175, 1000, Math.PI / 2, scene, 'red'));    // 오른쪽
+    horizontalArray.push(trafficLight(1000, -175, -1000, -Math.PI / 2, scene, 'red'));   // 왼쪽
+    verticalArray.push(trafficLight(1000, -175, 1000, Math.PI, scene, 'green'));     //  정면
+    verticalArray.push(trafficLight(-1000, -175, -1000, Math.PI * 2, scene, 'green'));     //  자기 자리
+
+    // 정면을 기준으로 초록불로 초기화
+    var horizontalLight = 'red'
+    var verticalLight = 'green'
+    var seconds = 0;
+
+    setInterval(function () {
+        seconds++;
+
+        if (seconds === 9) {    // 노란불 할건지 말건지 확인
+            // 전에 초록불이었으면 노란불 있음
+            if (horizontalLight === 'green') {
+                scene.remove(horizontalArray);      // 씬에서 신호등 지우기
+                horizontalArray = [];   // 배열 비우기
+
+                horizontalArray.push(trafficLight(-1000, -175, 1000, Math.PI / 2, scene, 'yellow'));    // 오른쪽
+                horizontalArray.push(trafficLight(1000, -175, -1000, -Math.PI / 2, scene, 'yellow'));   // 왼쪽
+
+                horizontalLight = 'yellow';
+            }
+            if (verticalLight === 'green') {
+                scene.remove(verticalArray);      // 씬에서 신호등 지우기
+                verticalArray = [];   // 배열 비우기
+
+                verticalArray.push(trafficLight(1000, -175, 1000, Math.PI, scene, 'yellow'));     //  정면
+                verticalArray.push(trafficLight(-1000, -175, -1000, Math.PI * 2, scene, 'yellow'));     //  자기자리
+
+                verticalLight = 'yellow';
+            }
+
+            // 전에 빨간불이었으면 노란불 없음
+            // nothing
+        } else if (seconds === 10) {    // 불 바꿔주기
+            // 전에 빨간불이었으면 초록불로 바꿔주기
+            if (horizontalLight === 'red') {
+                scene.remove(horizontalArray);      // 씬에서 신호등 지우기
+                horizontalArray = [];   // 배열 비우기
+
+                horizontalArray.push(trafficLight(-1000, -175, 1000, Math.PI / 2, scene, 'green'));    // 오른쪽
+                horizontalArray.push(trafficLight(1000, -175, -1000, -Math.PI / 2, scene, 'green'));   // 왼쪽
+
+                horizontalLight = 'green';
+            }
+            if (verticalLight === 'red') {
+                scene.remove(verticalArray);      // 씬에서 신호등 지우기
+                verticalArray = [];   // 배열 비우기
+
+                verticalArray.push(trafficLight(1000, -175, 1000, Math.PI, scene, 'green'));     //  정면
+                verticalArray.push(trafficLight(-1000, -175, -1000, Math.PI * 2, scene, 'green'));     //  자기자리
+
+                verticalLight = 'green';
+            }
+
+            // 전에 노란불이었으면 빨간불로 바꿔주기
+            if (horizontalLight === 'yellow') {
+                scene.remove(horizontalArray);      // 씬에서 신호등 지우기
+                horizontalArray = [];   // 배열 비우기
+
+                horizontalArray.push(trafficLight(-1000, -175, 1000, Math.PI / 2, scene, 'red'));    // 오른쪽
+                horizontalArray.push(trafficLight(1000, -175, -1000, -Math.PI / 2, scene, 'red'));   // 왼쪽
+
+                horizontalLight = 'red';
+            }
+            if (verticalLight === 'yellow') {
+                scene.remove(verticalArray);      // 씬에서 신호등 지우기
+                verticalArray = [];   // 배열 비우기
+
+                verticalArray.push(trafficLight(1000, -175, 1000, Math.PI, scene, 'red'));     //  정면
+                verticalArray.push(trafficLight(-1000, -175, -1000, Math.PI * 2, scene, 'red'));     //  자기자리
+
+                verticalLight = 'red';
+            }
+
+            seconds = 0;
+        }
+    }, 1000)
 
     //SIDEWALK STREET
     var sidewalk;
@@ -337,7 +405,7 @@ function map(scene) {
     }
     for (i = 0; i < 2; i++) {
         // 왼쪽 아래(위쪽)과 가운데(위쪽)
-        if(i===0){  // 아래
+        if (i === 0) {  // 아래
             sidewalk = new THREE.Mesh(new THREE.BoxGeometry(350, 10000, 40), sidewalkMaterial);
             sidewalk.rotation.x = -Math.PI / 2;
             sidewalk.rotation.z = -Math.PI / 2;
@@ -349,7 +417,7 @@ function map(scene) {
             for (j = 0; j < 5; j++) {
                 lamp(1200 + j * 2000, -175, -11200, 0, scene);
             }
-        }else{  // 가운데
+        } else {  // 가운데
             sidewalk = new THREE.Mesh(new THREE.BoxGeometry(350, 10000, 40), sidewalkMaterial);
             sidewalk.rotation.x = -Math.PI / 2;
             sidewalk.rotation.z = -Math.PI / 2;
@@ -758,147 +826,15 @@ function map(scene) {
 
     //MAP'S OBJECTS
 
-    //Palaces
-    // palace1(7000,-175,4000,-Math.PI/2,scene);
-    // palace2(3500,-175,9000,0,scene);
-    // palace6(8000,-175,16000,0,scene);
-    //
-    // for(i=0; i<4; i++)
-    // 	palace7(-4000-i*3100,-175,3000,0,scene);
-    //
-    // palace5(-9000,-175,14000,0,scene);
-    //
-    // palace4(-5000,-175,8000,0,scene);
-    // palace4(-15000,-175,8000,0,scene);
-
-
-    // for(i=0; i<4; i++)
-    // 	palace7(-4000-i*3100,-175,-2000,0,scene);
-    //
-    // palace2(-9000,-175,-16000,Math.PI/2,scene);
-    // palace3(-4000,-175,-8500,-Math.PI/2,scene);
-
-
     //Stop signals
     // stopSignal(-1000, -175, 800, 0, scene);
     // stopSignal(-18000, -175, -800, Math.PI, scene);
     // stopSignal(800, -175, -1000, Math.PI, scene);
     // stopSignal(18000, -175, 800, 0, scene);
-    stopSignal(800, -175, -18000, Math.PI / 2, scene);
+    stopSignal(800, -175, -10000, Math.PI / 2, scene);
     stopSignal(-800, -175, 8000, -Math.PI / 2, scene);
-
-    //Trees
-    //up
-    for (var i = 0; i < 150; i++) {
-        var z = 20000 + Math.floor((Math.random() * (35000 - 20000)));
-        var x = -30000 + Math.floor((Math.random() * (33000 + 33000)));
-        tree(x, -195, z, scene);
-    }
-    //down
-    for (var i = 0; i < 150; i++) {
-        z = -35000 + Math.floor((Math.random() * (-20000 + 35000)));
-        x = -30000 + Math.floor((Math.random() * (32000 + 32000)));
-        tree(x, -195, z, scene);
-    }
-    //left
-    for (var i = 0; i < 75; i++) {
-        z = -20000 + Math.floor((Math.random() * (20000 + 20000)));
-        x = -35000 + Math.floor((Math.random() * (-20000 + 35000)));
-        tree(x, -195, z, scene);
-    }
-    //right
-    for (var i = 0; i < 75; i++) {
-        z = -20000 + Math.floor((Math.random() * (20000 + 20000)));
-        x = 20000 + Math.floor((Math.random() * (35000 - 20000)));
-        tree(x, -195, z, scene);
-    }
-
-    //circuit object
-    //CROSS C
-    // block(-300, -215, -2000, 0,scene);
-
-    // block(-300,-215,900,0,scene);
-    // block(300,-215,900,0,scene);
-    // block(900,-215,300,Math.PI/2,scene);
-    // block(900,-215,-300,Math.PI/2,scene);
-
-    // for (i = 2; i < 7; i++) {
-    //     cone(700, -215, -100 * i, scene);
-    //     cone(-100 * i, -215, 650, scene);
-    // }
-    //
-    // cone(650, -215, -100, scene);
-    // cone(600, -215, 0, scene);
-    // cone(550, -215, 100, scene);
-    // cone(500, -215, 200, scene);
-    // cone(450, -215, 300, scene);
-    // cone(375, -215, 375, scene);
-    // cone(300, -215, 450, scene);
-    // cone(200, -215, 500, scene);
-    // cone(100, -215, 550, scene);
-    // cone(0, -215, 600, scene);
-    // cone(-100, -215, 650, scene);
-
-    //CROSS B
-    // block(-19300,-215,-900,Math.PI,scene);
-    // block(-18700,-215,-900,Math.PI,scene);
-
-    // for (i = 0; i < 7; i++) {
-    //     cone(-18400 - i * 100, -215, -700, scene);
-    // }
-    // for (i = 0; i < 14; i++) {
-    //     cone(-19700, -215, -400 + i * 100, scene);
-    // }
-    // cone(-19600, -215, -450, scene);
-    // cone(-19500, -215, -500, scene);
-    // cone(-19400, -215, -550, scene);
-    // cone(-19300, -215, -600, scene);
-    // cone(-19200, -215, -650, scene);
-    // cone(-19100, -215, -675, scene);
-
-    //CROSS A and D
-    // block(-300,-215,18300,Math.PI,scene);
-    // block(300,-215,18300,Math.PI,scene);
-    //
-    // block(18300,-215,300,-Math.PI/2,scene);
-    // block(18300,-215,-300,-Math.PI/2,scene);
-    // for (i = 0; i < 12; i++) {
-    //     cone(-600 + i * 100, -215, 18400, scene);
-    //     cone(18400, -215, -600 + i * 100, scene);
-    // }
-
-
-    //CROSS E
-    // block(-900,-215,-19300,-Math.PI/2,scene);
-    // block(-900,-215,-18700,-Math.PI/2,scene);
-
-    // for (i = 0; i < 7; i++) {
-    //     cone(-700, -215, -18400 - i * 100, scene);
-    // }
-    // for (i = 0; i < 14; i++) {
-    //     cone(-400 + i * 100, -215, -19700, scene);
-    // }
-    // cone(-450, -215, -19600, scene);
-    // cone(-500, -215, -19500, scene);
-    // cone(-550, -215, -19400, scene);
-    // cone(-600, -215, -19300, scene);
-    // cone(-650, -215, -19200, scene);
-    // cone(-675, -215, -19100, scene);
-
-    //Playground area
-    seeSawSwing(15000, -175, -6500, 0, scene);
-    seeSawSwing(11000, -175, -4300, Math.PI / 2, scene);
-    carousel(13000, -175, -3000, 0, scene);
-    carousel(13000, -175, -5000, 0, scene);
-    carousel(13000, -175, -7000, 0, scene);
-    slide(15000, -175, -2800, Math.PI, scene);
-    slide(11000, -175, -5900, Math.PI / 2, scene);
-    for (i = 0; i < 17; i++) {
-        tree(2000, -175, -1500 - i * 1000, scene);
-        tree(3500, -175, -2000 - i * 1000, scene);
-        tree(5000, -175, -1500 - i * 1000, scene);
-        tree(6500, -175, -2000 - i * 1000, scene);
-        tree(8000, -175, -1500 - i * 1000, scene);
-        tree(9500, -175, -2000 - i * 1000, scene);
-    }
 };
+
+function makeTrafficLight() {
+
+}
