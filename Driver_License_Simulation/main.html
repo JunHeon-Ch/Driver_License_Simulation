@@ -27,7 +27,7 @@
             /* set margin to 0 and overflow to hidden, to go fullscreen */
             margin: 0;
             overflow: hidden;
-            font-family: 'mainFont' ;
+            font-family: 'mainFont';
         }
 
         #start_background {
@@ -37,6 +37,7 @@
             width: 100%;
             text-align: center;
         }
+
         #emergency_background, #parking_background {
             background-color: transparent;
             position: absolute;
@@ -64,7 +65,7 @@
             transition: all 0.3s ease 0s;
         }
 
-        #countdown, #parking_result{
+        #countdown, #parking_result {
             /*color: rgba(250, 167, 2, 0.8);*/
             color: rgba(255, 255, 255, 0.8);;
             font-size: 80px;
@@ -148,16 +149,17 @@
         <p id="countdown"></p>
     </div>
 </div>
-<div id="emergency_background" style="display: none;">
-    <div style="display: table-cell; vertical-align: middle;">
-<!--        <input type="button" id="stopSuddenBtn" value="START" src="emergency_light" onclick="stopSudden()">-->
-        <img id="stopSuddenBtn" src="warning.png" style="cursor: pointer;" onclick="stopSudden()">
-    </div>
-</div>
+
 <div id="parking_background" style="display: none;">
     <div style="display: table-cell; vertical-align: middle;">
-<!--        <p id="parking_timer" style="font-size: 30px; color:white; transform: translateY(-200px);" onclick="successParking()"></p> 테스트-클릭하면 success-->
+        <!--        <p id="parking_timer" style="font-size: 30px; color:white; transform: translateY(-200px);" onclick="successParking()"></p> 테스트-클릭하면 success-->
         <p id="parking_timer" style="font-size: 30px; color:white; transform: translateY(-200px);"></p>
+    </div>
+</div>
+<div id="emergency_background" style="display: none;">
+    <div style="display: table-cell; vertical-align: middle;">
+        <!--        <input type="button" id="stopSuddenBtn" value="START" src="emergency_light" onclick="stopSudden()">-->
+        <img id="stopSuddenBtn" src="warning.png" style="cursor: pointer;" onclick="stopSudden()">
     </div>
 </div>
 <div style="position:absolute;">
@@ -178,7 +180,8 @@
 <!-- Div which will hold the Output -->
 <div id="manual">
     <div class="c">Break > <span class="h">W</span> / Accelerator > <span class="h">R</span></div>
-    <div class="c">Gear > <span class="h">P: A</span> / <span class="h">R: S</span> / <span class="h">N: D</span> / <span class="h">D: F</span></div>
+    <div class="c">Gear > <span class="h">P: A</span> / <span class="h">R: S</span> / <span class="h">N: D</span> /
+        <span class="h">D: F</span></div>
     <div class="c">Handle > <span class="h">Left: J</span> / <span class="h">Right: L</span></div>
     <div class="c">Default cameras > <span class="h">1: Back</span> / <span class="h">2: Internal</span> / <span
             class="h">3: Front</span>
@@ -204,12 +207,13 @@
     // var sudden_time=1000;
     var sudden_time;
     var sudden_f;
-    var sudden_red=true;
+    var sudden_red = true;
     // var sudden_end=false;
     // document.getElementById('emergency_background').style.display = "none";
 
     // 주차
-    var parking_time=1000;
+    // var parking_time=1000;
+    var parking_time = 10000;
     var parking_timer_f;
 
     function startButton() {
@@ -236,7 +240,7 @@
 
     function stopwatch() {
         time++;
-        if(time==sudden_time){
+        if (time == sudden_time) {
             document.getElementById('emergency_background').style.display = "table";
             sudden_f = setInterval(showSuddenDanger, 500);
         }
@@ -258,34 +262,36 @@
     }
 
     // 주차 시작
-    function startParking(){
+    function startParking() {
         document.getElementById('parking_background').style.display = "table";
         parking_timer_f = setInterval(timer1Min, 10);
     }
+
     // 주차 1분 안에 성공했을 때
-    function successParking(){
+    function successParking() {
         clearInterval(parking_timer_f);
         document.getElementById('parking_timer').style.color = "#1DDB16";
         document.getElementById('parking_timer').style.fontSize = "50px";
         document.getElementById('parking_timer').innerText = 'SUCCESS!';
         setTimeout(endParking, 3000);
     }
-    function endParking(){  // T자 끝
+
+    function endParking() {  // T자 끝
         document.getElementById('parking_background').style.display = "none"
     }
 
     function timer1Min() {
         parking_time--;
 
-        if(parking_time==0){
+        if (parking_time == 0) {
             // FAIL 표시 해주고 3초 뒤 안내메세지 끝
             document.getElementById('parking_timer').style.color = "#FF0000";
             document.getElementById('parking_timer').style.fontSize = "50px";
             document.getElementById('parking_timer').innerText = 'FAIL';
             setTimeout(endParking, 3000);
-        }else if(parking_time<0){
+        } else if (parking_time < 0) {
             clearInterval(parking_timer_f);
-        }else {
+        } else {
             var mins = Math.floor(parking_time / 100 / 60);
             var secs = Math.floor(parking_time / 100) % 60;
             var milisec = parking_time % 100;
@@ -305,9 +311,9 @@
 
 
     function showSuddenDanger() {
-        if(sudden_red){
+        if (sudden_red) {
             document.getElementById('emergency_background').style.background = "rgba(255, 0, 0, 0.4)";
-        }else{
+        } else {
             document.getElementById('emergency_background').style.background = "transparent";
         }
         sudden_red = !sudden_red;
@@ -316,13 +322,15 @@
         //     clearInterval(sudden_f);
         // }
     }
-    function stopSudden(){
+
+    function stopSudden() {
         clearInterval(sudden_f);
         document.getElementById('emergency_background').style.display = "none";
     }
-    function randomSuddenDanger(){
-        sudden_time = Math.floor( Math.random()  * 60 + 60 )*100; //60초(1분)~120초(2분) 사이의 난수 생성
-        console.log("random time : " + sudden_time/100);
+
+    function randomSuddenDanger() {
+        sudden_time = Math.floor(Math.random() * 60 + 60) * 100; //60초(1분)~120초(2분) 사이의 난수 생성
+        console.log("random time : " + sudden_time / 100);
     }
 
 </script>
