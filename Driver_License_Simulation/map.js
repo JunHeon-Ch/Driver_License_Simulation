@@ -58,7 +58,7 @@ function map(scene) {
     var squareMaterial = new THREE.MeshLambertMaterial({color: 0xffffff, map: textureSquare});
     var grassMaterial = new THREE.MeshLambertMaterial({color: 0xffffff, map: textureGrass});
 
-    //SQUARE
+    // SQUARE
     // 반쪼가리 잔디밭 2개 그리기
     square = new THREE.Mesh(new THREE.PlaneGeometry(16000 * PERCENT, 8600), grassMaterial);
     square.rotation.x = -Math.PI / 2;
@@ -122,17 +122,17 @@ function map(scene) {
     var horizontalArray = [];
     var verticalArray = [];
 
-    // angle을 2로 나누면 90도로 줄어든다.
+    var horizontalLight = 'red'
+    var verticalLight = 'green'
+    var seconds = 0;
+
+    // 신호등을 처음에 그려줌
     horizontalArray.push(trafficLight(-1000, -175, 1000, Math.PI / 2, scene, 'red'));    // 오른쪽
     horizontalArray.push(trafficLight(1000, -175, -1000, -Math.PI / 2, scene, 'red'));   // 왼쪽
     verticalArray.push(trafficLight(1000, -175, 1000, Math.PI, scene, 'green'));     //  정면
     verticalArray.push(trafficLight(-1000, -175, -1000, Math.PI * 2, scene, 'green'));     //  자기 자리
 
-    // 정면을 기준으로 초록불로 초기화
-    var horizontalLight = 'red'
-    var verticalLight = 'green'
-    var seconds = 0;
-
+    // 1초마다 신호등 확인
     setInterval(function () {
         seconds++;
 
@@ -526,7 +526,7 @@ function map(scene) {
     street.position.y = -215;
     scene.add(street);
 
-    //CROSS A
+    // CROSS A
     // 가운데 윗부분 교차로
     street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 6000), stopMaterial);
     street.rotation.x = -Math.PI / 2;
@@ -559,7 +559,7 @@ function map(scene) {
     scene.add(street);
 
     // 오른쪽 윗부분 교차로
-    //ANGLE 2
+    // ANGLE 2
     street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 6000), continueLineMaterial);
     street.rotation.x = -Math.PI / 2;
     street.position.x = -19000 * PERCENT;
@@ -583,7 +583,7 @@ function map(scene) {
     street.position.y = -215;
     scene.add(street);
 
-    //CROSS B
+    // CROSS D
     // 오른쪽 중간 교차로
     street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 1400), oneLineMaterial);
     street.rotation.x = -Math.PI / 2;
@@ -613,7 +613,7 @@ function map(scene) {
     street.position.x = -16300 * PERCENT;
     scene.add(street);
 
-    //CROSS C
+    // CROSS C
     // 가운데 교차로
     street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 1400), crossNoLineMaterial);
     street.rotation.x = -Math.PI / 2;
@@ -646,7 +646,7 @@ function map(scene) {
     street.position.x = 2000;
     scene.add(street);
 
-    //CROSS D
+    // CROSS B
     // 왼쪽 가운데 교차로
     street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 1400), oneLineMaterial);
     street.rotation.x = -Math.PI / 2;
@@ -675,7 +675,7 @@ function map(scene) {
     street.position.x = 16300 * PERCENT;
     scene.add(street);
 
-    //ANGLE 4
+    // ANGLE 3
     // 왼쪽 아래 교차로
     street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 2600), continueLineMaterial);
     street.rotation.x = -Math.PI / 2;
@@ -699,7 +699,7 @@ function map(scene) {
     street.position.y = -215;
     scene.add(street);
 
-    //CROSS E
+    // CROSS E
     // 가운데 아래 교차로
     street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 2600), stopMaterial);
     street.rotation.x = -Math.PI / 2;
@@ -730,7 +730,7 @@ function map(scene) {
     street.position.y = -215;
     scene.add(street);
 
-    //ANGLE 3
+    // ANGLE 4
     // 오른쪽 아래 교차로
     street = new THREE.Mesh(new THREE.PlaneGeometry(1400, 2600), continueLineMaterial);
     street.rotation.x = -Math.PI / 2;
@@ -763,32 +763,26 @@ function map(scene) {
     green.position.y = -215;
     scene.add(green);
 
-    //right
+    // right
     var green = new THREE.Mesh(new THREE.PlaneBufferGeometry(25600, 39400), grassMaterial);
     green.rotation.x = -Math.PI / 2;
     green.position.x = -24900;
     green.position.y = -215;
     scene.add(green);
 
-    //up
+    // up
     var green = new THREE.Mesh(new THREE.PlaneBufferGeometry(75400, 18000), grassMaterial);
     green.rotation.x = -Math.PI / 2;
     green.position.z = 19700;
     green.position.y = -215;
     scene.add(green);
 
-    //down
+    // down
     var green = new THREE.Mesh(new THREE.PlaneBufferGeometry(75400, 18000), grassMaterial);
     green.rotation.x = -Math.PI / 2;
     green.position.z = -21700;
     green.position.y = -215;
     scene.add(green);
-
-    //Reload texture
-    var textureGrass = new THREE.TextureLoader().load("texture/grasslight-big.jpg");
-    textureGrass.minFilter = THREE.MipMapLinearFilter;
-    textureGrass.magFilter = THREE.NearestFilter;
-    var grassMaterial = new THREE.MeshLambertMaterial({color: 0xffffff, map: textureGrass});
 
     // 각 끝자락 4
     // angle1
@@ -823,18 +817,9 @@ function map(scene) {
     green.position.y = -216;
     scene.add(green);
 
-
-    //MAP'S OBJECTS
-
     //Stop signals
-    // stopSignal(-1000, -175, 800, 0, scene);
-    // stopSignal(-18000, -175, -800, Math.PI, scene);
-    // stopSignal(800, -175, -1000, Math.PI, scene);
-    // stopSignal(18000, -175, 800, 0, scene);
-    stopSignal(800, -175, -10000, Math.PI / 2, scene);
-    stopSignal(-800, -175, 8000, -Math.PI / 2, scene);
-};
-
-function makeTrafficLight() {
-
+    stopSignal(-10000, -175, -800, Math.PI, scene);     // 오른쪽
+    stopSignal(10000, -175, 800, 0, scene);     // 왼쪽
+    stopSignal(800, -175, -10000, Math.PI / 2, scene);  // 아래
+    stopSignal(-800, -175, 8000, -Math.PI / 2, scene);  // 위
 }
