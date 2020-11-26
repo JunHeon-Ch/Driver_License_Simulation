@@ -32,12 +32,6 @@ function map(scene) {
     textureStop.magFilter = THREE.MipMapLinearFilter;
     textureStop.minFilter = THREE.LinearFilter;
 
-    var textureSquare = new THREE.TextureLoader().load("texture/porfido.jpg");
-    textureSquare.wrapS = textureSquare.wrapT = THREE.RepeatWrapping;
-    textureSquare.magFilter = THREE.NearestFilter;
-    textureSquare.minFilter = THREE.MipMapLinearFilter;
-    textureSquare.repeat.set(50, 50);
-
     var textureGrass = new THREE.TextureLoader().load("texture/grasslight-big.jpg");
     textureGrass.wrapS = textureGrass.wrapT = THREE.RepeatWrapping;
     textureGrass.minFilter = THREE.MipMapLinearFilter;
@@ -55,7 +49,6 @@ function map(scene) {
     var continueLineMaterial = new THREE.MeshLambertMaterial({color: 0xffffff, map: textureContinueLine});
     var oneLineMaterial = new THREE.MeshLambertMaterial({color: 0xffffff, map: textureOneLine});
     var stopMaterial = new THREE.MeshLambertMaterial({color: 0xffffff, map: textureStop});
-    var squareMaterial = new THREE.MeshLambertMaterial({color: 0xffffff, map: textureSquare});
     var grassMaterial = new THREE.MeshLambertMaterial({color: 0xffffff, map: textureGrass});
 
     // SQUARE
