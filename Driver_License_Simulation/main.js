@@ -102,7 +102,7 @@ function main() {
     function render() {
         document.getElementById('velocity').innerText = Math.abs(Math.round(veyron.speed / veyron.MAX_SPEED * 200)) + ' KM';
 
-        if (veyron.root.position.x <= -5260 && veyron.root.position.x >= -6260 && veyron.root.position.z <= -400) {
+        if (veyron.root.position.x <= -5260 && veyron.root.position.x >= -6260 && veyron.root.position.z >= -800 && veyron.root.position.z <= -550) {
             console.log("123");
             if (parking_start_cnt == 0) {
                 startParking();
@@ -110,13 +110,15 @@ function main() {
             }
         }
 
-        if (veyron.root.position.x <= -7500 && veyron.root.position.z <= -3800 && veyron.root.position.z >= -4200) {
+        if (veyron.root.position.x >= -7500 && veyron.root.position.x <= -7000 && veyron.root.position.z <= -3800 && veyron.root.position.z >= -4200) {
             if (parking_success_cnt == 0) {
                 successParking();
                 parking_success_cnt++;
             }
         }
+        console.log("x");
         console.log(veyron.root.position.x);
+        console.log("z");
         console.log(veyron.root.position.z);
 
         var delta = clock.getDelta();
