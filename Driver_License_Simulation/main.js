@@ -97,8 +97,20 @@ function main() {
         // stats.update();
         document.getElementById('velocity').innerText = Math.abs(Math.round(veyron.speed / veyron.MAX_SPEED * 200)) + ' KM';
 
-        console.log(veyron.root.position.x);
-        console.log(veyron.root.position.z);
+        if (veyron.root.position.x <= -5260 && veyron.root.position.x >= -6260 && veyron.root.position.z >= -800 && veyron.root.position.z <= -550) {
+            console.log("123");
+            if (parking_start_cnt == 0) {
+                startParking();
+                parking_start_cnt++;
+            }
+        }
+
+        if (veyron.root.position.x >= -7500 && veyron.root.position.x <= -7000 && veyron.root.position.z <= -3800 && veyron.root.position.z >= -4200) {
+            if (parking_success_cnt == 0) {
+                successParking();
+                parking_success_cnt++;
+            }
+        }
         var delta = clock.getDelta();
         requestAnimationFrame(render);
         renderer.render(scene, camera);
