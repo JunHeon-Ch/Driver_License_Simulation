@@ -107,11 +107,13 @@ function main() {
                 startParking();
                 parking_start_cnt++;
             }
+            if (parking_success_cnt > 0) {
+                successParking();
+            }
         }
 
         if (veyron.root.position.x >= -7500 && veyron.root.position.x <= -7000 && veyron.root.position.z <= -3800 && veyron.root.position.z >= -4200) {
             if (parking_success_cnt == 0) {
-                successParking();
                 parking_success_cnt++;
             }
         }
@@ -255,5 +257,34 @@ function main() {
 
     function endParking() {  // T자 끝
         document.getElementById('parking_background').style.display = "none"
+    }
+
+    function timer1Min() {
+        parking_time--;
+
+        if(parking_time==0){
+            // FAIL 표시 해주고 3초 뒤 안내메세지 끝
+            document.getElementById('parking_timer').style.color = "#FF0000";
+            document.getElementById('parking_timer').style.fontSize = "50px";
+            document.getElementById('parking_timer').innerText = 'FAIL';
+            setTimeout(endParking, 3000);
+        }else if(parking_time<0){
+            clearInterval(parking_timer_f);
+        }else {
+            var mins = Math.floor(parking_time / 100 / 60);
+            var secs = Math.floor(parking_time / 100) % 60;
+            var milisec = parking_time % 100;
+
+            if (mins < 10) {
+                mins = "0" + mins;
+            }
+            if (secs < 10) {
+                secs = "0" + secs;
+            }
+            if (milisec < 10) {
+                milisec = "0" + milisec;
+            }
+            document.getElementById('parking_timer').innerText = mins + ":" + secs + ":" + milisec;
+        }
     }
 }
