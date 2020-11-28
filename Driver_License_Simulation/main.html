@@ -2,17 +2,22 @@
 <html>
 <head>
     <title>Driver License Simulation</title>
+<<<<<<< Updated upstream
+=======
+    <style type="text/css">
+        @font-face {
+            font-family: mainFont;
+            src: url("source/font.otf");
+            font-style: normal;
+            font-weight: normal;
+        }
+    </style>
+>>>>>>> Stashed changes
     <script type="text/javascript" src="./build/three.js"></script>
-    <script type="text/javascript" src="./build/dat.gui.js"></script>
-    <script type="text/javascript" src="js/controls/OrbitControls.js"></script>
-    <script type="text/javascript" src="js/three.js"></script>
     <script type="text/javascript" src="js/loaders/BinaryLoader.js"></script>
     <script type="text/javascript" src="js/loaders/OBJLoader.js"></script>
-    <script type="text/javascript" src="js/Detector.js"></script>
-    <script type="text/javascript" src="js/libs/stats.min.js"></script>
-    <script type="text/javascript" src="map.js"></script>
-    <script type="text/javascript" src="objects.js"></script>
-    <script src="js/Coordinates.js"></script>
+    <script type="text/javascript" src="js/map.js"></script>
+    <script type="text/javascript" src="js/objects.js"></script>
     <script src="js/Car.js"></script>
     <style>
         body {
@@ -55,8 +60,7 @@
             transition: all 0.3s ease 0s;
         }
 
-        #countdown, #parking_result{
-            /*color: rgba(250, 167, 2, 0.8);*/
+        #countdown {
             color: rgba(255, 255, 255, 0.8);;
             font-size: 80px;
         }
@@ -140,14 +144,22 @@
 </div>
 <div id="emergency_background" style="display: none;">
     <div style="display: table-cell; vertical-align: middle;">
+<<<<<<< Updated upstream
 <!--        <input type="button" id="stopSuddenBtn" value="START" src="emergency_light" onclick="stopSudden()">-->
         <img id="stopSuddenBtn" src="warning.png" style="cursor: pointer;" onclick="stopSudden()">
+=======
+        <p id="parking_timer" style="font-size: 30px; color:white; transform: translateY(-200px);"></p>
+>>>>>>> Stashed changes
     </div>
 </div>
 <div id="parking_background" style="display: none;">
     <div style="display: table-cell; vertical-align: middle;">
+<<<<<<< Updated upstream
 <!--        <p id="parking_timer" style="font-size: 30px; color:white; transform: translateY(-200px);" onclick="successParking()"></p> 테스트-클릭하면 success-->
         <p id="parking_timer" style="font-size: 30px; color:white; transform: translateY(-200px);"></p>
+=======
+        <img id="stopSuddenBtn" src="source/warning.png" style="cursor: pointer;" onclick="stopSudden()">
+>>>>>>> Stashed changes
     </div>
 </div>
 <div style="position:absolute;">
@@ -176,14 +188,8 @@
     Free camera > mouse
 </div>
 
-<!--<div id="velocity">-->
-<!--    <p></p>-->
-<!--</div>-->
-
-<div id="Stats-output"></div>
-<script type="text/javascript" src="./build/stats.js"></script>
 <div id="WebGL-output"></div>
-<script src="main.js"></script>
+<script src="js/main.js"></script>
 <script>
     var count = 4;
     var countdown_f;
@@ -191,15 +197,9 @@
     var time = 0;
     var timer_f;
 
-    // var sudden_time=1000;
     var sudden_time;
     var sudden_f;
     var sudden_red=true;
-    // var sudden_end=false;
-    // document.getElementById('emergency_background').style.display = "none";
-
-    // 주차
-    var parking_timer_f;
 
     function startButton() {
         document.getElementById('startBtn').style.display = "none";
@@ -253,10 +253,6 @@
             document.getElementById('emergency_background').style.background = "transparent";
         }
         sudden_red = !sudden_red;
-        // if(sudden_end){
-        //     // 돌발 처리가 끝나면 'sudden_end'를 true로 변경, true로 변경되면 돌발 종료
-        //     clearInterval(sudden_f);
-        // }
     }
     function stopSudden(){
         clearInterval(sudden_f);
