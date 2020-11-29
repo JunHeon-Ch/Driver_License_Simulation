@@ -1,7 +1,3 @@
-/**
- * @author alteredq / http://alteredqualia.com/
- */
-
 THREE.BinaryLoader = function (manager) {
 
     if (typeof manager === 'boolean') {
