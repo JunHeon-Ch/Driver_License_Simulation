@@ -98,8 +98,8 @@ THREE.Car = function () {
                 // go straight
                 if (controls.gearDrive) {
                     this.speed = THREE.Math.clamp(this.speed + delta * this.ACCELERATION,
-                            0, this.MAX_SPEED);
-                // go backward
+                        0, this.MAX_SPEED);
+                    // go backward
                 } else if (controls.gearReverse) {
                     this.speed = THREE.Math.clamp(this.speed - delta * this.ACCELERATION,
                         this.MAX_REVERSE_SPEED, 0);
@@ -110,8 +110,7 @@ THREE.Car = function () {
                 if (controls.gearDrive) {
                     this.speed = THREE.Math.clamp(this.speed - delta * this.BREAK,
                         0, this.MAX_SPEED);
-                }
-                else if (controls.gearReverse) {
+                } else if (controls.gearReverse) {
                     this.speed = THREE.Math.clamp(this.speed + delta * this.BREAK,
                         this.MAX_REVERSE_SPEED, 0);
                 }
@@ -120,18 +119,14 @@ THREE.Car = function () {
 
         // steering
         if (controls.moveLeft) {
-            if (this.wheelOrientation < 50) {
-                this.wheelOrientation = THREE.Math.clamp(this.wheelOrientation +
-                    delta * this.WHEEL_ANGULAR_ACCELERATION, -this.MAX_WHEEL_ROTATION,
-                    this.MAX_WHEEL_ROTATION);
-            }
+            this.wheelOrientation = THREE.Math.clamp(this.wheelOrientation +
+                delta * this.WHEEL_ANGULAR_ACCELERATION, -this.MAX_WHEEL_ROTATION,
+                this.MAX_WHEEL_ROTATION);
         }
         if (controls.moveRight) {
-            if (this.wheelOrientation < 50) {
-                this.wheelOrientation = THREE.Math.clamp(this.wheelOrientation -
-                    delta * this.WHEEL_ANGULAR_ACCELERATION, -this.MAX_WHEEL_ROTATION,
-                    this.MAX_WHEEL_ROTATION);
-            }
+            this.wheelOrientation = THREE.Math.clamp(this.wheelOrientation -
+                delta * this.WHEEL_ANGULAR_ACCELERATION, -this.MAX_WHEEL_ROTATION,
+                this.MAX_WHEEL_ROTATION);
         }
 
         // speed down

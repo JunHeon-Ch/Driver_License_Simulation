@@ -17,7 +17,6 @@ var config = {
 };
 
 var currentCamera;
-// var FOLLOW_CAMERA = true;
 var i;
 var sprites = [];
 
@@ -123,12 +122,6 @@ function main() {
         camera.lookAt(cameraTarget);
 
         requestAnimationFrame(render);
-
-        // //updatecamera - center
-        // if (!FOLLOW_CAMERA) {
-        //     cameraTarget.x = currentCamera.root.position.x;
-        //     cameraTarget.z = currentCamera.root.position.z;
-        // }
     }
 
     //CAMERA MANAGEMENT
