@@ -7,12 +7,8 @@ Description of the Mobile Programming Project
 * If you want to watch our trailer video, please click on the image.
 
 [![](https://img.youtube.com/vi/fStbaCUpIW0/0.jpg)](http://www.youtube.com/watch?v=fStbaCUpIW0 "")
- 
-## [Presentation material](https://github.com/JunHeon-Ch/Mobile-Programming-Project/blob/master/MP_Final%20Presentation.pdf)
-If you want to watch our presentation material, please click on the image.
-[![Presentation material](https://github.com/JunHeon-Ch/Mobile-Programming-Project/blob/master/presentation.png)](https://github.com/JunHeon-Ch/Mobile-Programming-Project/blob/master/MP_Final%20Presentation.pdf)
 
-## [Title](https://github.com/JunHeon-Ch/MobileProgrammingProject/wiki/Title)
+## Title
 ### Our Closet
 ![Logo](https://github.com/JunHeon-Ch/Mobile-Programming-Project/blob/master/wiki_image/loadingback.png)
 * To share clothes that we don’t wear with users 
