@@ -1,6 +1,4 @@
-Driver_License_Simulation
-===
-Description of the Mobile Programming Project
+Driver License Simulation(운전 뽀개기)
 ===
 
 ## Trailer video
@@ -16,14 +14,14 @@ Description of the Mobile Programming Project
 ### Map
 - Map consist of roads, side blocks, grass, sky, traffic lights, and street lights.
 #### Road, Side block, Grass
-이미지1
+![1](https://github.com/JunHeon-Ch/Driver_License_Simulation/blob/main/wiki_image/1.png)
 - Roads and grasses are composed of Plane Geometry, and side blocks are composed of Box Geometry.
 1. Import images through TextureLoader.
 2. Define how to map.
 3. Define Material using MeshLamberMaterial.
 4. Define the object and position it, then add it to the scene.
 #### Sky
-이미지2
+![2](https://github.com/JunHeon-Ch/Driver_License_Simulation/blob/main/wiki_image/2.png)
 - Sky used the CubeTextureLoader to load the image of the sky and put it in the scene background.
 #### Traffuc lights
 이미지3
