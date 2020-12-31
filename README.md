@@ -5,10 +5,11 @@ Driver License Simulation(운전 뽀개기)
 * If you want to watch our trailer video, please click on the image.
 
 [![](https://img.youtube.com/vi/fStbaCUpIW0/0.jpg)](http://www.youtube.com/watch?v=fStbaCUpIW0 "")
-
+===
 ## Title
 ### 운전 뽀개기
 * To help get a license by simulating a driver's license test
+===
 
 ## Detail Description
 ### Map
@@ -29,6 +30,7 @@ Driver License Simulation(운전 뽀개기)
 #### Street lights
 ![4](https://github.com/JunHeon-Ch/Driver_License_Simulation/blob/main/wiki_image/4.PNG)
 - The streetlights consist of CylinderGeometry, BoxGeometry, and SphereGeometry.
+===
 
 ### Car
 ![5](https://github.com/JunHeon-Ch/Driver_License_Simulation/blob/main/wiki_image/5.PNG)
@@ -40,23 +42,28 @@ Driver License Simulation(운전 뽀개기)
 #### Speedometer
 ![7](https://github.com/JunHeon-Ch/Driver_License_Simulation/blob/main/wiki_image/7.PNG)
 - The speedometer displays the car speed to html by mapping it from 0 to 200.
+===
 
 ### Veiw point change
 ![6](https://github.com/JunHeon-Ch/Driver_License_Simulation/blob/main/wiki_image/6.PNG)
 - Point-in-time transformation is controlled by keyboards 1, 2, and 3. 1 is the back, 2 is the inside, and 3 is the front.
 - When a keydown event occurs, remove the existing camera and add a new camera to root Object3D and set the camera coordinates. At this time, the camera uses a Perspective Camera.
+===
 
 ### T-zone(parking) test
 ![8](https://github.com/JunHeon-Ch/Driver_License_Simulation/blob/main/wiki_image/8.PNG)
 - The countdown starts when the car enters the T-shaped area. If you park and exit within the time limit, you will succeed, and if you do not succeed within the time limit, you will fail.
 - Compare the T-shaped entrance coordinates with the car's coordinates to determine if the T-shaped section has entered. After that, compare the parking space coordinates with the car's coordinates to determine if the parking was successful and if you arrive at the T-entry coordinates again, you will be successful.
+===
 
 ### Sudden burst
 ![9](https://github.com/JunHeon-Ch/Driver_License_Simulation/blob/main/wiki_image/9.png)
 - Sudden burst occurs at random between 1 and 2 minutes, when the car must be stopped and the emergency button clicked.
+===
 
 ### Light source
 - We used Ambient Light and Directial Light to express the sun.
+===
 
 ## Member Information & Role
 ||최준헌 | 양희림 | 장하영 |
