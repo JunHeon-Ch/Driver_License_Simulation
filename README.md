@@ -14,14 +14,14 @@ Driver License Simulation(운전 뽀개기)
 ### Map
 - Map consist of roads, side blocks, grass, sky, traffic lights, and street lights.
 #### Road, Side block, Grass
-![1](https://github.com/JunHeon-Ch/Driver_License_Simulation/blob/main/wiki_image/1.png)
+![1](https://github.com/JunHeon-Ch/Driver_License_Simulation/blob/main/wiki_image/1.PNG)
 - Roads and grasses are composed of Plane Geometry, and side blocks are composed of Box Geometry.
 1. Import images through TextureLoader.
 2. Define how to map.
 3. Define Material using MeshLamberMaterial.
 4. Define the object and position it, then add it to the scene.
 #### Sky
-![2](https://github.com/JunHeon-Ch/Driver_License_Simulation/blob/main/wiki_image/2.png)
+![2](https://github.com/JunHeon-Ch/Driver_License_Simulation/blob/main/wiki_image/2.PNG)
 - Sky used the CubeTextureLoader to load the image of the sky and put it in the scene background.
 #### Traffuc lights
 이미지3
