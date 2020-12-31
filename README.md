@@ -5,6 +5,8 @@ Description of the Mobile Programming Project
 
 ## [Trailer video](https://youtu.be/fStbaCUpIW0)
 * If you want to watch our trailer video, please click on the image.
+
+[![](https://img.youtube.com/vi/fStbaCUpIW0/0.jpg)](http://www.youtube.com/watch?v=fStbaCUpIW0 "")
  
 ## [Presentation material](https://github.com/JunHeon-Ch/Mobile-Programming-Project/blob/master/MP_Final%20Presentation.pdf)
 If you want to watch our presentation material, please click on the image.
